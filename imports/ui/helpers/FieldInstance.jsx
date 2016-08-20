@@ -19,7 +19,7 @@ export default class FieldInstance extends Component {
 FieldInstance.propTypes = {
     id:             PropTypes.string.isRequired,
     type:           PropTypes.string.isRequired,
-    label:          PropTypes.string.isRequired,    
+    label:          PropTypes.string,    
     placeholder:    PropTypes.string,
     help:           PropTypes.string
 };
