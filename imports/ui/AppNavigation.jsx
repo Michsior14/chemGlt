@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import { AppBar, FlatButton, IconButton, IconMenu, MenuItem } from 'material-ui';
+import AppBar from 'material-ui/AppBar';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-
 import SignInForm from './account/SignInForm';
 
 
