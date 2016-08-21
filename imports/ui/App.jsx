@@ -3,12 +3,16 @@ import { AppBar, FlatButton, IconButton, IconMenu, MenuItem } from 'material-ui'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import MaterialUIHelper from './helpers/MaterialUIHelper';
 
+import SignInForm from './account/SignInForm';
+
 
 // App component - represents the whole app
 export default class App extends Component {
     constructor(props){
-        MaterialUIHelper.configure(App);
         super(props);
+        MaterialUIHelper.configure(App);
+        this.handleSignInTap = this.handleSignInTap.bind(this);
+        console.log(this.refs);
     }
     
     handleBarTouchTap() {
@@ -16,7 +20,8 @@ export default class App extends Component {
     }
     
     handleSignInTap() {
-        alert("Signing in");
+        console.log(this);
+        this.refs.signInForm.handleOpen();
     }
     
     handleSignUpTap() {
@@ -46,9 +51,11 @@ export default class App extends Component {
                         <MenuItem 
                             primaryText="Sign up"
                             onTouchTap={this.handleSignUpTap} ></MenuItem>
-                        </IconMenu>             
-                    }
-                    />
+                        </IconMenu>           
+                    } >
+                    <SignInForm ref="signInForm" />
+                </AppBar>
+                    
                     {this.props.main}
             </div>
         );
@@ -57,7 +64,7 @@ export default class App extends Component {
 
 App.propTypes = {
         styles: PropTypes.object.isRequired,
-        main: PropTypes.object.isRequired
+        main:   PropTypes.object.isRequired
 };
     
 App.defaultProps = {

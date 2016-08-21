@@ -10,17 +10,6 @@ export default class MaterialUIHelper {
             reactComponent.childContextTypes = {};
         }
         reactComponent.childContextTypes.muiTheme = PropTypes.object.isRequired;
-//        newGetChildContext = () => {
-//            if(reactComponent.getChildContext === undefined){
-//                return { muiTheme: getMuiTheme(baseTheme)};
-//                alert("bvxcd");
-//            }
-//            alert("asdad");
-//            var superChildContext = reactComponent.getChildContext();
-//            superChildContext.muiTheme = getMuiTheme(baseTheme);
-//            return superChildContext;
-//        };
-//        reactComponent.getChildContext = newGetChildContext;
         
         injectTapEventPlugin();
     }
