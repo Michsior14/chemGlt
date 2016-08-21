@@ -2,14 +2,19 @@ import React, { Component, PropTypes } from 'react';
 import { AppBar, FlatButton } from 'material-ui'; 
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import injectTapEventPlugin from 'react-tap-event-plugin';
+//import injectTapEventPlugin from 'react-tap-event-plugin';
+import MaterialUIHelper from './helpers/MaterialUIHelper';
 
 import Task from './Task.jsx';
 
 
 // App component - represents the whole app
 export default class App extends Component {
-
+    constructor(props){
+        MaterialUIHelper.configure(App);
+        super(props);
+    }
+    
     handleTouchTap() {
         alert('Test TouchTap');
     }
@@ -28,6 +33,7 @@ export default class App extends Component {
         ));
     }
     
+    //Code to run material-ui, to replace by helper somehow
     getChildContext() {
         return { muiTheme: getMuiTheme(baseTheme)};
     }
@@ -57,9 +63,3 @@ App.defaultProps = {
         }
     }
 };
-
-App.childContextTypes = {
-    muiTheme: PropTypes.object.isRequired
-}
-
-injectTapEventPlugin();
