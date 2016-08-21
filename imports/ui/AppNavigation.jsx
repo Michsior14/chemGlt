@@ -5,7 +5,6 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import SignInForm from './account/SignInForm';
 
 
-// App component - represents the whole app
 export default class AppNavigation extends Component {
     constructor(props){
         super(props);
