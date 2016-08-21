@@ -1,10 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { AppBar, FlatButton } from 'material-ui'; 
+import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import Task from './Task.jsx';
-import NavbarApp from './NavbarApp.jsx';
+import AccountsUIWrapper from './AccountsUIWrapper.jsx';
+
 
 // App component - represents the whole app
 export default class App extends Component {
+
+    handleTouchTap() {
+        alert('Test TouchTap');
+    }
+    
     getTasks() {
         return [
             { _id: 1, text: 'This is task 1' },
@@ -18,21 +27,37 @@ export default class App extends Component {
             <Task key={task._id} task={task} />
         ));
     }
+    
+    getChildContext() {
+        return { muiTheme: getMuiTheme(baseTheme)};
+    }
 
     render() {
         return (
             <div>
-                <NavbarApp />
-                <div className="container">
-                    <header>
-                        <h1>Todo List</h1>
-                    </header>
-
-                    <ul>
-                        {this.renderTasks()}
-                    </ul>
-                </div>
+                <AppBar
+                    title={<span style={this.props.styles.title}>ChemGit</span>}
+                    onTouchTap={this.handleTouchTap}
+                    />
+                    {this.props.main}
             </div>
         );
     }
+}
+
+App.propTypes = {
+        styles: PropTypes.object.isRequired,
+        main: PropTypes.object.isRequired
+};
+    
+App.defaultProps = {
+    styles: {
+        title: {
+            cursor: 'pointer'
+        }
+    }
+};
+
+App.childContextTypes = {
+    muiTheme: PropTypes.object.isRequired
 }

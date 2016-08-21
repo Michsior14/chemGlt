@@ -2,8 +2,17 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { render } from 'react-dom';
 
-import App from '../imports/ui/App.jsx';
+import { FlowRouter } from 'meteor/kadira:flow-router';
+import { mount } from 'react-mounter';
 
-Meteor.startup(() => {
-  render(<App />, document.getElementById('render-target'));
+import App from     '../imports/ui/App.jsx';
+import Home from    '../imports/ui/Home.jsx';
+
+FlowRouter.route('/', {
+    name: "Home page",
+    action() {
+        mount(App, {
+            main: <Home />
+        });
+    }
 });
