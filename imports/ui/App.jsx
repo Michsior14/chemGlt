@@ -1,8 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { AppBar, FlatButton } from 'material-ui'; 
-import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-//import injectTapEventPlugin from 'react-tap-event-plugin';
+import { AppBar, FlatButton } from 'material-ui';
 import MaterialUIHelper from './helpers/MaterialUIHelper';
 
 import Task from './Task.jsx';
@@ -33,9 +30,8 @@ export default class App extends Component {
         ));
     }
     
-    //Code to run material-ui, to replace by helper somehow
     getChildContext() {
-        return { muiTheme: getMuiTheme(baseTheme)};
+        return { muiTheme: MaterialUIHelper.getBaseTheme()};
     }
 
     render() {
