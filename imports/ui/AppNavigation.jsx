@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import AppBar from 'material-ui/AppBar';
 import IconMenu from 'material-ui/IconMenu';
+import IconButton from 'material-ui/IconButton';
 import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import SignInForm from './account/SignInForm';
-
 
 const propTypes = {
         styles: PropTypes.object.isRequired
@@ -53,10 +53,10 @@ class AppNavigation extends Component {
                         >
                         <MenuItem 
                             primaryText="Sign in"
-                            onTouchTap={this.handleSignInTap} ></MenuItem>
+                            onTouchTap={this.handleSignInTap} />
                         <MenuItem 
                             primaryText="Sign up"
-                            onTouchTap={this.handleSignUpTap} ></MenuItem>
+                            onTouchTap={this.handleSignUpTap} />
                         </IconMenu>           
                     }
                 >
