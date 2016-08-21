@@ -1,18 +1,18 @@
-import React, { Component, PropTypes } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import AppNavigation from './AppNavigation';
+import React, {Component, PropTypes} from "react";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import getMuiTheme from "material-ui/styles/getMuiTheme";
+import injectTapEventPlugin from "react-tap-event-plugin";
+import AppNavigation from "./AppNavigation";
 
 
 const propTypes = {
-        main:   PropTypes.object.isRequired
+    main: PropTypes.object.isRequired
 };
 const muiTheme = getMuiTheme({});
 
 // App component - represents the whole app
 class App extends Component {
-    constructor(props){
+    constructor(props) {
         injectTapEventPlugin();
         super(props);
     }

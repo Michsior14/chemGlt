@@ -11,6 +11,8 @@
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
     "react-mounter": "^1.2.0",
-    "react-tap-event-plugin": "^1.0.0"
+    "react-tap-event-plugin": "^1.0.0",
+    "draft-js": "^0.8.1",
+    "socket.io": "^1.4.8"
   }
 }
