@@ -2,8 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import { AppBar, FlatButton } from 'material-ui'; 
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import Task from './Task.jsx';
+
 
 // App component - represents the whole app
 export default class App extends Component {
@@ -59,3 +61,5 @@ App.defaultProps = {
 App.childContextTypes = {
     muiTheme: PropTypes.object.isRequired
 }
+
+injectTapEventPlugin();
