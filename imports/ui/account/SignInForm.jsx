@@ -33,13 +33,15 @@ export default class SignInForm extends Component {
         const actions = [
             (<FlatButton
                 label="Cancel"
-                primary={true}
-                onTouchTap={this.handleClose} />),
+                primary
+                onTouchTap={this.handleClose} 
+            />),
             (<FlatButton
                 label="Login"
-                primary={true}
-                keyboardFocused={true}
-                onTouchTap={this.handleLogging} />)
+                primary
+                keyboardFocused
+                onTouchTap={this.handleLogging} 
+            />)
         ];
         return (
             <div>
@@ -48,7 +50,8 @@ export default class SignInForm extends Component {
                     actions={actions}
                     modal={false}
                     open={this.state.open}
-                    onRequestClose={this.handleClose} >
+                    onRequestClose={this.handleClose} 
+                >
                     Signing in text inside dialog
                 </Dialog>
             </div>

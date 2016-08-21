@@ -16,7 +16,7 @@ export default class AppNavigation extends Component {
     }
     
     handleSignInTap() {
-        this.refs.signInForm.handleOpen();
+        this.signInForm.handleOpen();
     }
     
     handleSignUpTap() {
@@ -35,7 +35,8 @@ export default class AppNavigation extends Component {
                                 <IconButton><MoreVertIcon /></IconButton>
                             }
                             targetOrigin={{horizontal: 'right', vertical: 'top'}}
-                            anchorOrigin={{horizontal: 'right', vertical: 'top'}} >
+                            anchorOrigin={{horizontal: 'right', vertical: 'top'}} 
+                        >
                         <MenuItem 
                             primaryText="Sign in"
                             onTouchTap={this.handleSignInTap} ></MenuItem>
@@ -43,8 +44,8 @@ export default class AppNavigation extends Component {
                             primaryText="Sign up"
                             onTouchTap={this.handleSignUpTap} ></MenuItem>
                         </IconMenu>           
-                    } >
-                    <SignInForm ref="signInForm" />
+                    }>
+                    <SignInForm ref={ref => { this.signInForm = ref; }} />
                 </AppBar>
             </div>
         );
