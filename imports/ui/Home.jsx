@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
 
-export default class SignInForm extends Component {
+class SignInForm extends Component {
     render() {
         return (
             <div>
@@ -10,3 +10,6 @@ export default class SignInForm extends Component {
         );
     }
 };
+
+
+export default SignInForm;

@@ -6,7 +6,20 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import SignInForm from './account/SignInForm';
 
 
-export default class AppNavigation extends Component {
+const propTypes = {
+        styles: PropTypes.object.isRequired
+};
+
+const defaultProps = {
+    styles: {
+        title: {
+            cursor: 'pointer'
+        }
+    }
+};
+
+
+class AppNavigation extends Component {
     constructor(props){
         super(props);
         this.handleSignInTap = this.handleSignInTap.bind(this);
@@ -45,7 +58,8 @@ export default class AppNavigation extends Component {
                             primaryText="Sign up"
                             onTouchTap={this.handleSignUpTap} ></MenuItem>
                         </IconMenu>           
-                    }>
+                    }
+                >
                     <SignInForm ref={ref => { this.signInForm = ref; }} />
                 </AppBar>
             </div>
@@ -53,14 +67,8 @@ export default class AppNavigation extends Component {
     }
 }
 
-AppNavigation.propTypes = {
-        styles: PropTypes.object.isRequired
-};
+AppNavigation.propTypes = propTypes;
     
-AppNavigation.defaultProps = {
-    styles: {
-        title: {
-            cursor: 'pointer'
-        }
-    }
-};
+AppNavigation.defaultProps = defaultProps;
+
+export default AppNavigation;

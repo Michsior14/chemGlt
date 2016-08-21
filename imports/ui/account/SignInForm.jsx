@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Dialog, FlatButton } from 'material-ui';
 
-export default class SignInForm extends Component {
+class SignInForm extends Component {
     
     constructor(props){
         super(props);
@@ -58,3 +58,6 @@ export default class SignInForm extends Component {
         );
     }
 }
+
+
+export default SignInForm;

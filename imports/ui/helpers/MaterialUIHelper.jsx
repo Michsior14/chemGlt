@@ -4,7 +4,7 @@ import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
-export default class MaterialUIHelper {
+class MaterialUIHelper {
     static configure(reactComponent) {
         if(reactComponent.childContextTypes === undefined){
             reactComponent.childContextTypes = {};
@@ -20,3 +20,5 @@ export default class MaterialUIHelper {
     
 }
 
+
+export default MaterialUIHelper;

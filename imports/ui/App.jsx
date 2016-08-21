@@ -3,8 +3,12 @@ import MaterialUIHelper from './helpers/MaterialUIHelper';
 
 import AppNavigation from './AppNavigation';
 
+const propTypes = {
+        main:   PropTypes.object.isRequired
+};
+
 // App component - represents the whole app
-export default class App extends Component {
+class App extends Component {
     constructor(props){
         super(props);
         MaterialUIHelper.configure(App);
@@ -24,6 +28,6 @@ export default class App extends Component {
     }
 }
 
-App.propTypes = {
-        main:   PropTypes.object.isRequired
-};
+App.propTypes = propTypes;
+
+export default App;
