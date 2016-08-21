@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { AppBar, FlatButton } from 'material-ui';
+import { AppBar, FlatButton, IconButton, IconMenu, MenuItem } from 'material-ui';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import MaterialUIHelper from './helpers/MaterialUIHelper';
 
 
@@ -10,8 +11,16 @@ export default class App extends Component {
         super(props);
     }
     
-    handleTouchTap() {
-        alert('Test TouchTap');
+    handleBarTouchTap() {
+        
+    }
+    
+    handleSignInTap() {
+        alert("Signing in");
+    }
+    
+    handleSignUpTap() {
+        alert("Signing up");
     }
     
     getChildContext() {
@@ -23,7 +32,22 @@ export default class App extends Component {
             <div>
                 <AppBar
                     title={<span style={this.props.styles.title}>ChemGit</span>}
-                    onTouchTap={this.handleTouchTap}
+                    onTouchTap={this.handleBarTouchTap}
+                    iconElementRight={
+                        <IconMenu 
+                            iconButtonElement={
+                                <IconButton><MoreVertIcon /></IconButton>
+                            }
+                            targetOrigin={{horizontal: 'right', vertical: 'top'}}
+                            anchorOrigin={{horizontal: 'right', vertical: 'top'}} >
+                        <MenuItem 
+                            primaryText="Sign in"
+                            onTouchTap={this.handleSignInTap} ></MenuItem>
+                        <MenuItem 
+                            primaryText="Sign up"
+                            onTouchTap={this.handleSignUpTap} ></MenuItem>
+                        </IconMenu>             
+                    }
                     />
                     {this.props.main}
             </div>
