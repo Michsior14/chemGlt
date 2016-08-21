@@ -10,7 +10,7 @@ export default class SignInForm extends Component {
         };
         this.handleOpen = this.handleOpen.bind(this);
         this.handleClose = this.handleClose.bind(this);
-        
+        this.handleLogging = this.handleLogging.bind(this);
     }
     
     handleLogging(){
