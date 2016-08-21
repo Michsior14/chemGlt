@@ -4,8 +4,6 @@ import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import Task from './Task.jsx';
-import AccountsUIWrapper from './AccountsUIWrapper.jsx';
-
 
 // App component - represents the whole app
 export default class App extends Component {
