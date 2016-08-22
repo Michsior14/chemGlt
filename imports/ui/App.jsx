@@ -18,11 +18,9 @@ class App extends Component {
         this.state = {
             openedLeft: {
                 toggled: false,
-                style: {
-                    marginLeft: 0
-                }
+                classNames: "navigation-closed"
             }
-        }
+        };
         this.tappedLeftNavHandle = this.tappedLeftNavHandle.bind(this);
     }
 
@@ -31,18 +29,14 @@ class App extends Component {
             this.setState({
                 openedLeft: {
                     toggled: true,
-                    style: {
-                        marginLeft: 256
-                    }
+                    classNames: "navigation-open"
                 }
             });
         } else {
             this.setState({
                 openedLeft: {
                     toggled: false,
-                    style: {
-                        marginLeft: 0
-                    }
+                    classNames: "navigation-closed"
                 }
             });
         }
@@ -51,7 +45,7 @@ class App extends Component {
     render() {
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
-                <div style={this.state.openedLeft.style}>
+                <div className={this.state.openedLeft.classNames}>
                     <AppNavigation tappedLeftNav={this.tappedLeftNavHandle}/>
                     {this.props.main}
                 </div>
