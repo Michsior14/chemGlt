@@ -20,15 +20,10 @@ class NavigationMenu extends Component {
             open: false
         };
         this.handleToggle = this.handleToggle.bind(this);
-        this.handleChange = this.handleChange.bind(this);
     }
 
     handleToggle() {
         this.setState({open: !this.state.open});
-    }
-
-    handleChange(open) {
-        this.setState({open: open});
     }
 
     render() {
@@ -36,8 +31,6 @@ class NavigationMenu extends Component {
             <div>
                 <Drawer
                     open={this.state.open}
-                    docked={false}
-                    onRequestChange={this.handleChange}
                 >
                     {pages.map(page => (
                         <MenuItem

@@ -8,7 +8,8 @@ import SignInForm from "./account/SignInForm";
 import NavigationMenu from "./NavigationMenu";
 
 const propTypes = {
-    styles: PropTypes.object.isRequired
+    styles: PropTypes.object.isRequired,
+    tappedLeftNav: PropTypes.func.isRequired
 };
 
 const defaultProps = {
@@ -33,6 +34,7 @@ class AppNavigation extends Component {
 
     handleNavigationMenuTap() {
         this.navigationMenu.handleToggle();
+        this.props.tappedLeftNav();
     }
 
     handleSignInTap() {
