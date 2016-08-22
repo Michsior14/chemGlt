@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { Dialog, FlatButton } from 'material-ui';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import TextField from 'material-ui/TextField';
 
 class SignInForm extends Component {
     
@@ -52,7 +54,22 @@ class SignInForm extends Component {
                     open={this.state.open}
                     onRequestClose={this.handleClose} 
                 >
-                    Signing in text inside dialog
+                    <TextField
+                        hintText="E-mail"
+                        floatingLabelText="E-mail"
+                        ref={ref => {
+                            this.emailField = ref
+                        }}
+                    />
+                    <br />
+                    <TextField
+                        hintText="Password"
+                        floatingLabelText="Password"
+                        type="password"
+                        ref={ref => {
+                            this.passwordField = ref
+                        }}
+                    />
                 </Dialog>
             </div>
         );
