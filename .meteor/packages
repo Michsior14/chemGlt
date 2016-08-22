@@ -23,3 +23,5 @@ shell-server
 accounts-ui
 accounts-password
 kadira:flow-router
+digilord:faker
+alanning:roles
