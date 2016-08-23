@@ -1,7 +1,7 @@
-import Component from "react";
-import PropTypes from "react";
 
 function SelectableListWrapper(ComposedComponent) {
+    import React, {Component, PropTypes} from "react";
+
     const propTypes = {
         children: PropTypes.node.isRequired,
         defaultValue: PropTypes.number.isRequired,
