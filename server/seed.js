@@ -1,5 +1,6 @@
 import Meteor from "meteor/meteor";
-import {Accounts, Roles } from "alanning:roles";
+import Roles from "meteor/alanning:roles";
+import Accounts from "meteor/accounts-password"
 
 
 class Seeder {
