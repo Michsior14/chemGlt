@@ -1,7 +1,10 @@
-import Meteor from "meteor/meteor";
+import { Meteor } from "meteor/meteor";
 import Roles from "meteor/alanning:roles";
 import Accounts from "meteor/accounts-password"
 
+Seed = ( collection, options ) => {
+	return new Seeder( collection, options);
+};
 
 class Seeder {
 	constructor( collection, options) {
@@ -11,7 +14,7 @@ class Seeder {
 		else {
 			this.collection = this.getCollection( collection );
 			this.options = options; 
-
+			console.log(this.collection);
 			if( typeof this.collection !== 'undefined' ){
 				this.seed();
 			}
@@ -42,7 +45,6 @@ class Seeder {
 	getCollection( collection ){
 		let collectionName = this.sanitizeCollectionName( collection );
 		return collectionName === 'Users' ? Meteor.users : global[ collectionName ];
-
 	}
 
 	sanitizeCollectionName( collection ){
@@ -54,8 +56,8 @@ class Seeder {
 		let loopLength		= isDataArray ? data.length : this.options.min;
 		let hasData			= this.checkForExistingData();
 		let collectionName 	= this.collection._name;
-		let isUsers			= collectionName === 'Users';
 		let envAllowed		= this.envAllowed();
+		this.isUsers		= collectionName === 'Users';
 
 		if ( !hasData && envAllowed ){
 			for (let i = 0; i < loopLength; i++){
@@ -80,7 +82,7 @@ class Seeder {
 	}
 
 	insertRecord( value ){
-		if ( isUsers ){
+		if ( this.isUsers ){
 			this.createUser( value );
 		}
 		else {
@@ -94,6 +96,7 @@ class Seeder {
 		});
 		if ( !isExistingUser ){
 			let userId = Accounts.createUser({
+				username: 	user.username,
 				email: 		user.email,
 				password: 	user.password,
 				profile: 	user.profile || {}
@@ -106,6 +109,4 @@ class Seeder {
 	}
 }
 
-Seed = ( collection, options ) => {
-	return new Seeder( collection, options);
-};
+export default Seed;
