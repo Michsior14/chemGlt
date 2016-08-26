@@ -5,7 +5,7 @@ import ListItem from "material-ui/List/ListItem";
 import Subheader from "material-ui/Subheader";
 import MakeSelectable from "material-ui/List/MakeSelectable";
 import Divider from "material-ui/Divider";
-import SelectableListWrapper from "./helpers/SelectableListWraper";
+import SelectableListWrapper from "../helpers/SelectableListWraper";
 import {FlowRouter} from "meteor/kadira:flow-router";
 
 const pages = [

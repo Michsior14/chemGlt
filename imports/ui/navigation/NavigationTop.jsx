@@ -4,7 +4,7 @@ import IconMenu from "material-ui/IconMenu";
 import IconButton from "material-ui/IconButton";
 import MenuItem from "material-ui/MenuItem";
 import MoreVertIcon from "material-ui/svg-icons/navigation/more-vert";
-import SignInForm from "./account/SignInForm";
+import SignInForm from "../account/SignInForm";
 import NavigationMenu from "./NavigationMenu";
 
 const propTypes = {
@@ -21,7 +21,7 @@ const defaultProps = {
 };
 
 
-class AppNavigation extends Component {
+class NavigationTop extends Component {
     constructor(props) {
         super(props);
         this.handleSignInTap = this.handleSignInTap.bind(this);
@@ -46,30 +46,32 @@ class AppNavigation extends Component {
     }
 
     render() {
+        const rightMenu = (
+            <IconMenu
+                iconButtonElement={
+                    <IconButton><MoreVertIcon /></IconButton>
+                }
+                targetOrigin={{horizontal: 'right', vertical: 'top'}}
+                anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+            >
+                <MenuItem
+                    primaryText="Sign in"
+                    onTouchTap={this.handleSignInTap}
+                />
+                <MenuItem
+                    primaryText="Sign up"
+                    onTouchTap={this.handleSignUpTap}
+                />
+            </IconMenu>
+            );
+
         return (
             <div>
                 <AppBar
                     title={<span style={this.props.styles.title}>ChemGit</span>}
                     onTouchTap={this.handleBarTouchTap}
                     onLeftIconButtonTouchTap={this.handleNavigationMenuTap}
-                    iconElementRight={
-                        <IconMenu
-                            iconButtonElement={
-                                <IconButton><MoreVertIcon /></IconButton>
-                            }
-                            targetOrigin={{horizontal: 'right', vertical: 'top'}}
-                            anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-                        >
-                            <MenuItem
-                                primaryText="Sign in"
-                                onTouchTap={this.handleSignInTap}
-                            />
-                            <MenuItem
-                                primaryText="Sign up"
-                                onTouchTap={this.handleSignUpTap}
-                            />
-                        </IconMenu>
-                    }
+                    iconElementRight={rightMenu}
                 >
                     <SignInForm ref={ref => {
                         this.signInForm = ref;
@@ -85,8 +87,8 @@ class AppNavigation extends Component {
     }
 }
 
-AppNavigation.propTypes = propTypes;
+NavigationTop.propTypes = propTypes;
 
-AppNavigation.defaultProps = defaultProps;
+NavigationTop.defaultProps = defaultProps;
 
-export default AppNavigation;
+export default NavigationTop;
