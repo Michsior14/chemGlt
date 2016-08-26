@@ -9,3 +9,7 @@
 .text-editor-wrapper {
     margin: 10px;
 }
+
+.auto-width {
+    width: 100%!important;
+}
