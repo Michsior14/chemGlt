@@ -8,11 +8,15 @@ class SignInForm extends Component {
     constructor(props){
         super(props);
         this.state = {
-          open: false  
+          open: false,
+          emailValue: "",
+          pswValue:   ""  
         };
-        this.handleOpen = this.handleOpen.bind(this);
-        this.handleClose = this.handleClose.bind(this);
-        this.handleLogging = this.handleLogging.bind(this);
+        this.handleOpen =           this.handleOpen.bind(this);
+        this.handleClose =          this.handleClose.bind(this);
+        this.handleLogging =        this.handleLogging.bind(this);
+        this.handleEmailChange =    this.handleEmailChange.bind(this);
+        this.handlePswChange =      this.handlePswChange.bind(this);
     }
     
     handleLogging(){
@@ -21,16 +25,30 @@ class SignInForm extends Component {
     
     handleOpen(){
         this.setState({
-           open: true 
+            open: true
         });
     }
     
     handleClose(){
         this.setState({
-           open: false 
+            open: false,
+            emailValue: "",
+            pswValue:   ""   
+        });
+    }
+
+    handleEmailChange( eventObject ){
+        this.setState({
+            emailValue: eventObject.target.value
         });
     }
     
+    handlePswChange( eventObject ){
+        this.setState({
+            pswValue: eventObject.target.value
+        });
+    }
+
     render() {
         const actions = [
             (<FlatButton
@@ -57,18 +75,16 @@ class SignInForm extends Component {
                     <TextField
                         hintText="E-mail"
                         floatingLabelText="E-mail"
-                        ref={ref => {
-                            this.emailField = ref
-                        }}
+                        value={this.emailValue}
+                        onChange={this.handleEmailChange}
                     />
                     <br />
                     <TextField
                         hintText="Password"
                         floatingLabelText="Password"
                         type="password"
-                        ref={ref => {
-                            this.passwordField = ref
-                        }}
+                        value={this.pswValue}
+                        onChange={this.handlePswChange}
                     />
                 </Dialog>
             </div>
