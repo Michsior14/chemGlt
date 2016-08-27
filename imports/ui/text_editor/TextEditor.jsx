@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from "react";
 import {Editor, EditorState, RichUtils,
         getDefaultKeyBinding, KeyBindingUtil} from "draft-js";
 import FlatButton from "material-ui/FlatButton";
-import EditorButtons from "./EditorButtons";
+import EditorButtons from "/imports/ui/text_editor/EditorButtons";
 
 
 const {hasCommandModifier} = KeyBindingUtil;
