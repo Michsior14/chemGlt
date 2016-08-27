@@ -5,6 +5,15 @@ import injectTapEventPlugin from "react-tap-event-plugin";
 import NavigationTop from "/imports/ui/navigation/NavigationTop";
 import "flexboxgrid/dist/flexboxgrid.css";
 
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
+import appReducer from '../../lib/reducers/appReducer'
+
+let store = createStore(
+    appReducer,
+    applyMiddleware(thunk)
+);
 
 const muiTheme = getMuiTheme({});
 const propTypes = {
@@ -45,12 +54,14 @@ class App extends Component {
 
     render() {
         return (
-            <MuiThemeProvider muiTheme={muiTheme}>
-                <div className={this.state.openedLeft.classNames}>
-                    <NavigationTop tappedLeftNav={this.tappedLeftNavHandle}/>
-                    {this.props.main}
-                </div>
-            </MuiThemeProvider>
+            <Provider store={store}>
+                <MuiThemeProvider muiTheme={muiTheme}>
+                    <div className={this.state.openedLeft.classNames}>
+                        <NavigationTop tappedLeftNav={this.tappedLeftNavHandle}/>
+                        {this.props.main}
+                    </div>
+                </MuiThemeProvider>
+            </Provider>
         );
     }
 }
