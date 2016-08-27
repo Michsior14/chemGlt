@@ -99,7 +99,7 @@ class SignInForm extends Component {
                 disabled={!this.state.canSubmit}
                 primary
                 keyboardFocused
-                onTouchTap={this.handleLogging}
+                form="loginForm"
             />)
         ];
         return (
@@ -112,8 +112,10 @@ class SignInForm extends Component {
                     onRequestClose={this.handleClose}
                 >
                     <Formsy.Form
+                        id="loginForm"
                         onValid={this.enableButton}
                         onInvalid={this.disableButton}
+                        onSubmit={this.handleLogging}
                     >
                         <div className="row between-xs">
                             <div className="col-md auto-width">
