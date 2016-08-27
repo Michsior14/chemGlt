@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from "react";
 import AppBar from "material-ui/AppBar";
-import NavigationMenu from "./NavigationMenu";
-import UnloggedRightMenu from "./UnloggedRightMenu"
+import NavigationMenu from "/imports/ui/navigation/NavigationMenu";
+import UnloggedRightMenu from "/imports/ui/navigation/UnloggedRightMenu";
 
 const propTypes = {
     styles: PropTypes.object.isRequired,

@@ -4,7 +4,7 @@ import IconButton from "material-ui/IconButton";
 import MenuItem from "material-ui/MenuItem";
 import MoreVertIcon from "material-ui/svg-icons/navigation/more-vert";
 
-import SignInForm from "./forms/SignInForm";
+import SignInForm from "/imports/ui/navigation/forms/SignInForm";
 
 
 class UnloggedRightMenu extends Component {

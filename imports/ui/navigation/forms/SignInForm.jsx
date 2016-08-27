@@ -2,28 +2,8 @@ import React, {Component, PropTypes} from "react";
 import Dialog from "material-ui/Dialog";
 import FlatButton from "material-ui/FlatButton";
 import FormsyText from "formsy-material-ui/lib/FormsyText";
-
-const errorMessages = {
-    loginError: {
-        isEmail: "Provide valid email"
-    },
-    passwordError: {
-        minLength: "Password requires min. 6 characters",
-        isValidPassword: "Password not valid"
-    }
-};
-
-const validations = {
-    login: {
-        isEmail: true,
-    },
-    password: {
-        minLength: 6,
-        isValidPassword: function (values, value) {
-            return true;
-        }
-    }
-}
+import validations from "/lib/validations";
+import messages from "/lib/messages";
 
 class SignInForm extends Component {
 
@@ -126,7 +106,7 @@ class SignInForm extends Component {
                                     floatingLabelText="E-mail"
                                     required
                                     validations={validations.login}
-                                    validationErrors={errorMessages.loginError}
+                                    validationErrors={messages.loginError}
                                     value={this.state.emailValue}
                                     onChange={this.handleEmailChange}
                                 />
@@ -140,7 +120,7 @@ class SignInForm extends Component {
                                     type="password"
                                     required
                                     validations={validations.password}
-                                    validationErrors={errorMessages.passwordError}
+                                    validationErrors={messages.passwordError}
                                     value={this.state.pswValue}
                                     onChange={this.handlePswChange}
                                 />

@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from "react";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 import injectTapEventPlugin from "react-tap-event-plugin";
-import NavigationTop from "./navigation/NavigationTop";
+import NavigationTop from "/imports/ui/navigation/NavigationTop";
 import "flexboxgrid/dist/flexboxgrid.css";
 
 
