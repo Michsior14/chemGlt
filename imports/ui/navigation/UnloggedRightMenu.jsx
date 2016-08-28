@@ -6,8 +6,9 @@ import MenuItem from "material-ui/MenuItem";
 import MoreVertIcon from "material-ui/svg-icons/navigation/more-vert";
 
 import SignInForm from "/imports/ui/navigation/forms/SignInForm";
+import SignUpForm from "/imports/ui/navigation/forms/SignUpForm";
 
-import { openSignInForm } from "/lib/actions/account";
+import { openDialog } from "/lib/actions/account";
 
 const placeOrigin = {
 	horizontal: 'right',
@@ -33,6 +34,7 @@ let UnloggedRightMenu = ({ placeOrigin, handlers }) => (
 	        />
 	    </IconMenu>
 	    <SignInForm />
+	    <SignUpForm />
 	</div>
 );
 
@@ -46,10 +48,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 	return {
 		handlers: {
 			handleSignInTap: () => {
-				dispatch(openSignInForm());
+				dispatch(openDialog('SIGN_IN'));
 			},
 			handleSignUpTap: () => {
-
+				dispatch(openDialog('SIGN_UP'));
 			}
 		}
 	}
