@@ -1,6 +1,6 @@
 import { Meteor } from "meteor/meteor";
 import Roles from "meteor/alanning:roles";
-import Accounts from "meteor/accounts-password"
+import { Accounts } from "meteor/accounts-base"
 
 Seed = ( collection, options ) => {
 	return new Seeder( collection, options);
@@ -13,8 +13,7 @@ class Seeder {
 		}
 		else {
 			this.collection = this.getCollection( collection );
-			this.options = options; 
-			console.log(this.collection);
+			this.options = options;
 			if( typeof this.collection !== 'undefined' ){
 				this.seed();
 			}
@@ -57,9 +56,9 @@ class Seeder {
 		let hasData			= this.checkForExistingData();
 		let collectionName 	= this.collection._name;
 		let envAllowed		= this.envAllowed();
-		this.isUsers		= collectionName === 'Users';
-
-		if ( !hasData && envAllowed ){
+		this.isUsers		= collectionName === 'users';
+		console.log(( this.collection._name ));
+		if ( envAllowed ){
 			for (let i = 0; i < loopLength; i++){
 				let value = isDataArray ? data[i] : data(i);
 
