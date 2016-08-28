@@ -7,7 +7,7 @@ import MoreVertIcon from "material-ui/svg-icons/navigation/more-vert";
 
 import SignInForm from "/imports/ui/navigation/forms/SignInForm";
 
-import { openSignInForm } from "../../../lib/actions/account";
+import { openSignInForm } from "/lib/actions/account";
 
 const placeOrigin = {
 	horizontal: 'right',

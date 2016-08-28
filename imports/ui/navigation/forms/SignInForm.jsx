@@ -5,6 +5,7 @@ import FlatButton from "material-ui/FlatButton";
 import {reduxForm, Field} from "redux-form";
 import {TextField} from "redux-form-material-ui";
 import {closeDialog} from "/lib/actions/account";
+import {signIn} from "/lib/actions/account";
 import {validateSignIn} from "/lib/validations";
 
 
@@ -79,9 +80,7 @@ class SignInForm extends Component {
 const mapStateToProps = (state, ownProps) => {
     const reducer = state.accountReducer;
     return {
-        open: (reducer.isDialog && reducer.openedDialog === 'SIGN_IN'),
-        email: reducer.isDialog ? reducer.fieldsDialog.email : null,
-        password: reducer.isDialog ? reducer.fieldsDialog.password : null
+        open: (reducer.isDialog && reducer.openedDialog === 'SIGN_IN')
     }
 };
 
@@ -96,8 +95,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 SignInForm = reduxForm({
     form: 'SignInForm',
     onSubmit: (data, dispatch) => {
-        console.log(data.email);
-        console.log(data.password);
+        dispatch(signIn(data));
     },
     onSubmitSuccess: (result, dispatch) => {
         dispatch(closeDialog());
