@@ -1,27 +1,26 @@
 import React, {Component, PropTypes} from "react";
+import { connect } from 'react-redux';
 import Dialog from "material-ui/Dialog";
 import FlatButton from "material-ui/FlatButton";
 import FormsyText from "formsy-material-ui/lib/FormsyText";
 import validations from "/lib/validations";
 import messages from "/lib/messages";
 
+import { signIn, closeDialog, updateSignInFields } from "../../../../lib/actions/account";
+
+
 class SignInForm extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            open: false,
+            // open: false,
             emailValue: "",
             pswValue: "",
             canSubmit: false,
         };
         this.enableButton = this.enableButton.bind(this);
         this.disableButton = this.disableButton.bind(this);
-        this.handleOpen = this.handleOpen.bind(this);
-        this.handleClose = this.handleClose.bind(this);
-        this.handleLogging = this.handleLogging.bind(this);
-        this.handleEmailChange = this.handleEmailChange.bind(this);
-        this.handlePswChange = this.handlePswChange.bind(this);
     }
 
     enableButton() {
@@ -36,35 +35,6 @@ class SignInForm extends Component {
         });
     }
 
-    handleLogging() {
-        this.handleClose();
-    }
-
-    handleOpen() {
-        this.setState({
-            open: true
-        });
-    }
-
-    handleClose() {
-        this.setState({
-            open: false,
-            emailValue: "",
-            pswValue: ""
-        });
-    }
-
-    handleEmailChange(eventObject) {
-        this.setState({
-            emailValue: eventObject.target.value
-        });
-    }
-
-    handlePswChange(eventObject) {
-        this.setState({
-            pswValue: eventObject.target.value
-        });
-    }
 
     render() {
         const actions = [
@@ -76,7 +46,6 @@ class SignInForm extends Component {
             (<FlatButton
                 type="submit"
                 label="Login"
-                disabled={!this.state.canSubmit}
                 primary
                 keyboardFocused
                 form="loginForm"
@@ -88,14 +57,17 @@ class SignInForm extends Component {
                     title="Signing in"
                     actions={actions}
                     modal={false}
-                    open={this.state.open}
-                    onRequestClose={this.handleClose}
+                    open={this.props.open}
+                    onRequestClose={this.props.handleClose}
                 >
                     <Formsy.Form
                         id="loginForm"
-                        onValid={this.enableButton}
-                        onInvalid={this.disableButton}
-                        onSubmit={this.handleLogging}
+                        onSubmit={() => {
+                            this.props.handleLogging(
+                                this.props.emailValue,
+                                this.props.pswValue
+                            );
+                        }}
                     >
                         <div className="row between-xs">
                             <div className="col-md auto-width">
@@ -104,11 +76,12 @@ class SignInForm extends Component {
                                     className="box auto-width"
                                     hintText="E-mail"
                                     floatingLabelText="E-mail"
-                                    required
-                                    validations={validations.login}
-                                    validationErrors={messages.loginError}
-                                    value={this.state.emailValue}
-                                    onChange={this.handleEmailChange}
+                                    value={this.props.emailValue}
+                                    onChange={
+                                        (eventObject) => {
+                                            this.props.handleEmailChange(eventObject, this.props.pswValue)
+                                        }
+                                    }
                                 />
                             </div>
                             <div className="col-md auto-width">
@@ -118,11 +91,12 @@ class SignInForm extends Component {
                                     hintText="Password"
                                     floatingLabelText="Password"
                                     type="password"
-                                    required
-                                    validations={validations.password}
-                                    validationErrors={messages.passwordError}
-                                    value={this.state.pswValue}
-                                    onChange={this.handlePswChange}
+                                    value={this.props.pswValue}
+                                    onChange={
+                                        (eventObject) => {
+                                            this.props.handlePswChange(eventObject, this.props.emailValue)
+                                        }
+                                    }
                                 />
                             </div>
                         </div>
@@ -133,5 +107,43 @@ class SignInForm extends Component {
     }
 }
 
+
+const mapStateToProps = (state, ownProps) => {
+    const reducer = state.accountReducer;
+    return {
+        open:       (reducer.isDialog && reducer.openedDialog === 'SIGN_IN'),
+        emailValue: reducer.isDialog ? reducer.fieldsDialog.email : null,
+        pswValue:   reducer.isDialog ? reducer.fieldsDialog.password : null
+    }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        handleClose: () => {
+            dispatch(closeDialog());
+        },
+        handleEmailChange: ( eventObject, password ) => {
+            dispatch(updateSignInFields({
+                email:      eventObject.target.value,
+                password:   password
+            }));
+        },
+        handlePswChange: ( eventObject, email ) => {
+            dispatch(updateSignInFields({
+                email:      email,
+                password:   eventObject.target.value
+            }));
+        },
+        handleLogging: (email, password) => {
+            console.log(email);
+            console.log(password);
+        }
+    }
+}
+
+SignInForm = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(SignInForm);
 
 export default SignInForm;
