@@ -57,7 +57,7 @@ class Seeder {
 		let collectionName 	= this.collection._name;
 		let envAllowed		= this.envAllowed();
 		this.isUsers		= collectionName === 'users';
-		console.log(( this.collection._name ));
+		console.log(( loopLength ));
 		if ( envAllowed ){
 			for (let i = 0; i < loopLength; i++){
 				let value = isDataArray ? data[i] : data(i);

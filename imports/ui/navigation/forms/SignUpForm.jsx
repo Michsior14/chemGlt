@@ -5,7 +5,7 @@ import FlatButton from "material-ui/FlatButton";
 import {reduxForm, Field} from "redux-form";
 import {TextField} from "redux-form-material-ui";
 import {closeDialog} from "/lib/actions/account";
-// import {signUp} from "/lib/actions/account";
+import {signUp} from "/lib/actions/account";
 import {validateSignUp} from "/lib/validations";
 
 
@@ -46,23 +46,14 @@ let SignUpForm = ({
                     <div className="row between-xs">
                         <div className="col-md auto-width">
                             <Field
-                                name="firstname"
+                                name="username"
                                 component={TextField}
                                 className="box auto-width"
-                                hintText="Firstname"
-                                floatingLabelText="Firstname"
+                                hintText="Username"
+                                floatingLabelText="Username"
                             />
                         </div>
-                        <div className="col-md auto-width">
-                            <Field
-                                name="lastname"
-                                component={TextField}
-                                className="box auto-width"
-                                hintText="Lastname"
-                                floatingLabelText="Lastname"
-                            />
-                        </div>
-                    </div>
+                    </div>  
                     <div className="row between-xs">
                         <div className="col-md auto-width">
                             <Field
@@ -81,6 +72,26 @@ let SignUpForm = ({
                                 hintText="Password"
                                 floatingLabelText="Password"
                                 type="password"
+                            />
+                        </div>
+                    </div>                
+                    <div className="row between-xs">
+                        <div className="col-md auto-width">
+                            <Field
+                                name="firstname"
+                                component={TextField}
+                                className="box auto-width"
+                                hintText="Firstname"
+                                floatingLabelText="Firstname"
+                            />
+                        </div>
+                        <div className="col-md auto-width">
+                            <Field
+                                name="lastname"
+                                component={TextField}
+                                className="box auto-width"
+                                hintText="Lastname"
+                                floatingLabelText="Lastname"
                             />
                         </div>
                     </div>
@@ -111,7 +122,18 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 SignUpForm = reduxForm({
     form: 'SignUpForm',
     onSubmit: (data, dispatch) => {
-        // dispatch(signUp(data));
+        const newUser = {
+            username:       data.username,
+            email:          data.email,
+            password:       data.password,
+            profile: {
+                name: {
+                    first:  data.firstname,
+                    last:   data.lastname
+                }
+            }
+        }
+        dispatch(signUp(data));
     },
     onSubmitSuccess: (result, dispatch) => {
         dispatch(closeDialog());
