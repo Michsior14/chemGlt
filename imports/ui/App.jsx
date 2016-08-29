@@ -6,7 +6,7 @@ import NavigationTop from "/imports/ui/navigation/NavigationTop";
 import "flexboxgrid/dist/flexboxgrid.css";
 import {NotificationSystem} from "react-notification-system";
 import {connect} from "react-redux";
-import {handleLeftNav} from "/lib/actions/account";
+import {handleLeftNav} from "/lib/actions/navigation";
 import Home from "./Home";
 
 
@@ -17,8 +17,8 @@ const mapStateToProps = (state, ownProps) => {
     return {
         openedLeft: {
             main: 'HOME',
-            toggled: state.accountReducer.isLeftNav,
-            classNames: state.accountReducer.isLeftNav ?
+            toggled: state.navigationReducer.isLeftNav,
+            classNames: state.navigationReducer.isLeftNav ?
                 "navigation-open" : "navigation-closed"
         }
     };

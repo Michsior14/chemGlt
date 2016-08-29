@@ -1,62 +1,47 @@
 import React, {Component, PropTypes} from "react";
+import {connect} from "react-redux";
 import AppBar from "material-ui/AppBar";
 import NavigationMenu from "/imports/ui/navigation/NavigationMenu";
 import UnloggedRightMenu from "/imports/ui/navigation/UnloggedRightMenu";
+import {handleLeftNav} from "/lib/actions/navigation";
 
-const propTypes = {
-    styles: PropTypes.object.isRequired,
-    tappedLeftNav: PropTypes.func.isRequired
+const rightMenu = (
+    <UnloggedRightMenu />
+);
+
+let NavigationTop = ({handlers}) => (
+    <div>
+        <AppBar
+            title="ChemGit"
+            onTouchTap={handlers.handleBarTouch}
+            onLeftIconButtonTouchTap={handlers.handleNavigationMenuTouch}
+            iconElementRight={rightMenu}
+        >
+            <NavigationMenu />
+        </AppBar>
+    </div>
+);
+
+const mapStateToProps = (state, ownProps) => {
+    return {};
 };
 
-const defaultProps = {
-    styles: {
-        title: {
-            cursor: 'pointer'
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        handlers: {
+            handleNavigationMenuTouch: () => {
+                dispatch(handleLeftNav());
+            },
+            handleBarTouch: () => {
+
+            }
         }
     }
 };
 
-
-class NavigationTop extends Component {
-    constructor(props) {
-        super(props);
-        this.handleNavigationMenuTap = this.handleNavigationMenuTap.bind(this);
-    }
-
-    handleBarTouchTap() {
-
-    }
-
-    handleNavigationMenuTap() {
-        this.navigationMenu.handleToggle();
-        this.props.tappedLeftNav();
-    }
-
-    render() {
-        const rightMenu = (
-            <UnloggedRightMenu />
-        );
-
-        return (
-            <div>
-                <AppBar
-                    title={<span style={this.props.styles.title}>ChemGit</span>}
-                    onTouchTap={this.handleBarTouchTap}
-                    onLeftIconButtonTouchTap={this.handleNavigationMenuTap}
-                    iconElementRight={rightMenu}
-                >
-                    <NavigationMenu ref={ref => {
-                        this.navigationMenu = ref;
-                    }}
-                    />
-                </AppBar>
-            </div>
-        );
-    }
-}
-
-NavigationTop.propTypes = propTypes;
-
-NavigationTop.defaultProps = defaultProps;
+NavigationTop = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(NavigationTop);
 
 export default NavigationTop;

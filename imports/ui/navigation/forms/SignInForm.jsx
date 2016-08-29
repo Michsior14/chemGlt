@@ -4,7 +4,7 @@ import Dialog from "material-ui/Dialog";
 import FlatButton from "material-ui/FlatButton";
 import {reduxForm, Field} from "redux-form";
 import {TextField} from "redux-form-material-ui";
-import {closeDialog} from "/lib/actions/account";
+import {closeDialog} from "/lib/actions/navigation";
 import {signIn} from "/lib/actions/account";
 import {validateSignIn} from "/lib/validations";
 
@@ -74,7 +74,7 @@ let SignInForm = ({
 
 
 const mapStateToProps = (state, ownProps) => {
-    const reducer = state.accountReducer;
+    const reducer = state.navigationReducer;
     return {
         open: (reducer.isDialog && reducer.openedDialog === 'SIGN_IN')
     }

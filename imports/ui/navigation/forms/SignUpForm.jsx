@@ -4,7 +4,7 @@ import Dialog from "material-ui/Dialog";
 import FlatButton from "material-ui/FlatButton";
 import {reduxForm, Field} from "redux-form";
 import {TextField} from "redux-form-material-ui";
-import {closeDialog} from "/lib/actions/account";
+import {closeDialog} from "/lib/actions/navigation";
 import {signUp} from "/lib/actions/account";
 import {validateSignUp} from "/lib/validations";
 
@@ -100,12 +100,10 @@ let SignUpForm = ({
         </div>
     );
 
-}
-
-
+};
 
 const mapStateToProps = (state, ownProps) => {
-    const reducer = state.accountReducer;
+    const reducer = state.navigationReducer;
     return {
         open: (reducer.isDialog && reducer.openedDialog === 'SIGN_UP')
     }
@@ -132,7 +130,7 @@ SignUpForm = reduxForm({
                     last:   data.lastname
                 }
             }
-        }
+        };
         dispatch(signUp(data));
     },
     validate: validateSignUp

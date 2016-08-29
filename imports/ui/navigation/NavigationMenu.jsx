@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from "react";
+import {connect} from "react-redux";
 import Drawer from "material-ui/Drawer";
 import List from "material-ui/List/List";
 import ListItem from "material-ui/List/ListItem";
@@ -29,65 +30,60 @@ const pages = [
 ];
 
 const SelectableList = SelectableListWrapper(MakeSelectable(List));
-class NavigationMenu extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            open: false
-        };
-        this.path = FlowRouter.current().route.path;
-        this.handleToggle = this.handleToggle.bind(this);
-    }
-
-    handleToggle() {
-        this.setState({open: !this.state.open});
-    }
-
-    render() {
-        const menuItems = (
-            <SelectableList defaultValue={this.path}>
-                {pages.map((page, index) => {
-                    if(page.subheader){
-                        return (
-                            <Subheader
-                                key={index}
-                            >
-                                {page.subheader}
-                            </Subheader>
-                        )
-                    }
-                    else if (page.divider) {
-                        return (
-                            <Divider
-                                key={index}
-                            />
-                        )
-                    } else {
-                        return (
-                            <ListItem
-                                value={page.route}
-                                key={page.name}
-                                href={page.route}
-                            >
-                                {page.name}
-                            </ListItem>
-                        )
-                    }
-                })
+let NavigationMenu = ({isOpen, path}) => {
+    const menuItems = (
+        <SelectableList defaultValue={path}>
+            {pages.map((page, index) => {
+                if (page.subheader) {
+                    return (
+                        <Subheader
+                            key={index}
+                        >
+                            {page.subheader}
+                        </Subheader>
+                    )
+                }
+                else if (page.divider) {
+                    return (
+                        <Divider
+                            key={index}
+                        />
+                    )
+                } else {
+                    return (
+                        <ListItem
+                            value={page.route}
+                            key={page.name}
+                            href={page.route}
+                        >
+                            {page.name}
+                        </ListItem>
+                    )
+                }
+            })
             }
-            </SelectableList>
-        );
+        </SelectableList>
+    );
 
-        return (
-            <div>
-                <Drawer
-                    open={this.state.open}
-                    children={menuItems}
-                />
-            </div>
-        );
-    }
-}
+    return (
+        <div>
+            <Drawer
+                open={isOpen}
+                children={menuItems}
+            />
+        </div>
+    )
+};
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+        isOpen: state.navigationReducer.isLeftNav,
+        path: FlowRouter.current().path
+    };
+};
+
+NavigationMenu = connect(
+    mapStateToProps
+)(NavigationMenu);
 
 export default NavigationMenu;

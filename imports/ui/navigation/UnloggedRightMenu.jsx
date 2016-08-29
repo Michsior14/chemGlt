@@ -4,16 +4,14 @@ import IconMenu from "material-ui/IconMenu";
 import IconButton from "material-ui/IconButton";
 import MenuItem from "material-ui/MenuItem";
 import MoreVertIcon from "material-ui/svg-icons/navigation/more-vert";
-
 import SignInForm from "/imports/ui/navigation/forms/SignInForm";
 import SignUpForm from "/imports/ui/navigation/forms/SignUpForm";
-
-import { openDialog } from "/lib/actions/account";
+import { openDialog } from "/lib/actions/navigation";
 
 const placeOrigin = {
 	horizontal: 'right',
 	vertical: 'top'
-}
+};
 
 let UnloggedRightMenu = ({ placeOrigin, handlers }) => (
 	<div>
