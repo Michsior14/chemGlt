@@ -1,9 +1,13 @@
+import {Meteor} from "meteor/meteor";
 import React from "react";
 import {FlowRouter} from "meteor/kadira:flow-router";
+
+import { Provider } from 'react-redux';
 import {DocHead} from "meteor/kadira:dochead"
 import {mount} from "react-mounter";
 
 import App from "/imports/ui/App";
+import Root from "/imports/ui/Root"
 import Home from "/imports/ui/Home";
 import TextEditor from "/imports/ui/text_editor/TextEditor";
 
@@ -13,20 +17,20 @@ const metaInfo = {
 };
 DocHead.addMeta(metaInfo);
 
+
 FlowRouter.route('/', {
     name: "Home page",
     action: function() {
-        mount(App, {
-            main: <Home />
+        mount(Root, {
         });
     }
 });
 
-FlowRouter.route('/word', {
-    name: "Word editor",
-    action: function() {
-        mount(App, {
-            main: <TextEditor />
-        })
-    }
-});
+// FlowRouter.route('/word', {
+//     name: "Word editor",
+//     action: function() {
+//         mount(App, {
+//             main: <TextEditor />
+//         })
+//     }
+// });
