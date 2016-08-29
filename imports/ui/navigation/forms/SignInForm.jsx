@@ -93,9 +93,6 @@ SignInForm = reduxForm({
     onSubmit: (data, dispatch) => {
         dispatch(signIn(data));
     },
-    onSubmitSuccess: (result, dispatch) => {
-        dispatch(closeDialog());
-    },
     validate: validateSignIn
 })(SignInForm);
 

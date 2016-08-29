@@ -135,9 +135,6 @@ SignUpForm = reduxForm({
         }
         dispatch(signUp(data));
     },
-    onSubmitSuccess: (result, dispatch) => {
-        dispatch(closeDialog());
-    },
     validate: validateSignUp
 })(SignUpForm);
 
