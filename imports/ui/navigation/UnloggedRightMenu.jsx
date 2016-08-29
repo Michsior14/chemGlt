@@ -42,7 +42,7 @@ const mapStateToProps = (state, ownProps) => {
 	return {
 		placeOrigin: placeOrigin
 	};
-}
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
 	return {
@@ -55,7 +55,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 			}
 		}
 	}
-}
+};
 
 UnloggedRightMenu = connect(
 	mapStateToProps,

@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 
 import appReducer from '/lib/reducers/appReducer'
-import App from './App';
+import App from '/imports/ui/App';
 
 let store = createStore(
     appReducer,
@@ -17,6 +17,6 @@ let Root = ({}) => {
 			<App/>
 		</Provider>
 	);
-}
+};
 
 export default Root;
