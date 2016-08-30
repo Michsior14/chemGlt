@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from "react";
 import {connect} from "react-redux";
 import AppBar from "material-ui/AppBar";
 import NavigationMenu from "/imports/ui/navigation/NavigationMenu";
-import UnloggedRightMenu from "/imports/ui/navigation/UnloggedRightMenu";
+import NavigationRightMenu from "/imports/ui/navigation/NavigationRightMenu";
 import {handleLeftNav} from "/lib/actions/navigation";
 
 const rightMenu = (
