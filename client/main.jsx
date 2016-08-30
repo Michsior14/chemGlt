@@ -8,7 +8,6 @@ import {mount} from "react-mounter";
 
 import App from "/imports/ui/App";
 import Root from "/imports/ui/Root"
-import Home from "/imports/ui/Home";
 import TextEditor from "/imports/ui/text_editor/TextEditor";
 
 const metaInfo = {

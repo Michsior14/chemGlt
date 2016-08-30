@@ -30,9 +30,10 @@ let UnloggedRightMenu = ({ placeOrigin, handlers }) => (
 	            primaryText="Sign up"
 	            onTouchTap={handlers.handleSignUpTap}
 	        />
+
 	    </IconMenu>
-	    <SignInForm />
-	    <SignUpForm />
+	        <SignInForm />
+	    	<SignUpForm />
 	</div>
 );
 
