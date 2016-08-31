@@ -9,30 +9,42 @@ import Divider from "material-ui/Divider";
 import SelectableListWrapper from "/imports/ui/helpers/SelectableListWraper";
 import {FlowRouter} from "meteor/kadira:flow-router";
 
-const pages = [
-    {
-        subheader: 'Page menu'
-    },
-    {
-        name: 'Home',
-        route: '/',
-    }, {
-        name: 'Second',
-        route: '/cos',
-    }, {
-        divider: true
-    }, {
-        subheader: 'Projects'
-    }, {
-        name: 'Word',
-        route: '/word',
-    }
-];
+
 
 const SelectableList = SelectableListWrapper(MakeSelectable(List));
-let NavigationMenu = ({isOpen, path}) => {
+let NavigationMenu = ({states, handlers}) => {
+    let pages = null;
+    if ( states.isLoggedIn ){
+        pages = [
+            {
+                subheader: 'Page menu'
+            },
+            {
+                name: 'Home',
+                route: '/',
+            }, {
+                name: 'Second',
+                route: '/cos',
+            }, {
+                divider: true
+            }, {
+                subheader: 'Projects'
+            }, {
+                name: 'Word',
+                route: '/word',
+            }
+        ];
+
+    }
+    else {
+        pages = [
+            {
+                subheader: 'You have to be logged in.'
+            }
+        ]
+    }
     const menuItems = (
-        <SelectableList defaultValue={path}>
+        <SelectableList defaultValue={states.path}>
             {pages.map((page, index) => {
                 if (page.subheader) {
                     return (
@@ -68,7 +80,7 @@ let NavigationMenu = ({isOpen, path}) => {
     return (
         <div>
             <Drawer
-                open={isOpen}
+                open={states.isOpen}
                 children={menuItems}
             />
         </div>
@@ -77,13 +89,26 @@ let NavigationMenu = ({isOpen, path}) => {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        isOpen: state.navigationReducer.isLeftNav,
-        path: FlowRouter.current().path
+        states: {
+            isLoggedIn:     state.accountReducer.isLoggedIn,
+            projectsList:   state.projectsReducer.projectsList,
+            isOpen:         state.navigationReducer.isLeftNav,
+            path:           FlowRouter.current().path
+        }
     };
 };
 
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        handlers: {
+
+        }
+    }
+};
+
 NavigationMenu = connect(
-    mapStateToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(NavigationMenu);
 
 export default NavigationMenu;
