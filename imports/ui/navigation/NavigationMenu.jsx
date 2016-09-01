@@ -29,11 +29,14 @@ let NavigationMenu = ({states, handlers}) => {
                 divider: true
             }, {
                 subheader: 'Projects'
-            }, {
-                name: 'Word',
-                route: '/word',
             }
         ];
+        console.log(states);
+        // for (let item of states.projectsList){
+        //     pages.push({
+        //         name: item.name
+        //     });
+        // }
 
     }
     else {
@@ -66,7 +69,6 @@ let NavigationMenu = ({states, handlers}) => {
                         <ListItem
                             value={page.route}
                             key={page.name}
-                            href={page.route}
                         >
                             {page.name}
                         </ListItem>

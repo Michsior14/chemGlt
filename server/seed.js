@@ -61,7 +61,6 @@ class Seeder {
 		if ( envAllowed ){
 			for (let i = 0; i < loopLength; i++){
 				let value = isDataArray ? data[i] : data(i);
-
 				this.insertRecord( value );
 			}
 		}
