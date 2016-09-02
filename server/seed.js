@@ -1,4 +1,5 @@
 import { Meteor } from "meteor/meteor";
+import { Mongo } from 'meteor/mongo';
 import { Roles } from "meteor/alanning:roles";
 import { Accounts } from "meteor/accounts-base"
 
@@ -41,9 +42,9 @@ class Seeder {
 		}
 	}
 
-	getCollection( collection ){
-		let collectionName = this.sanitizeCollectionName( collection );
-		return collectionName === 'Users' ? Meteor.users : global[ collectionName ];
+	getCollection( collectionName ){
+		console.log(collectionName);
+		return collectionName === 'users' ? Meteor.users : Mongo.Collection.get(collectionName);
 	}
 
 	sanitizeCollectionName( collection ){

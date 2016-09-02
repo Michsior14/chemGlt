@@ -5,7 +5,7 @@ Meteor.methods( {
 
 	seedUsers(){
 
-		Seed( 'Users', {
+		Seed( 'users', {
 			data: [
 				{
 					username: "HopkinsFBI",
