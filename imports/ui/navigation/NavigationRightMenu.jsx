@@ -6,6 +6,7 @@ import MenuItem from "material-ui/MenuItem";
 import MoreVertIcon from "material-ui/svg-icons/navigation/more-vert";
 import SignInForm from "/imports/ui/navigation/forms/SignInForm";
 import SignUpForm from "/imports/ui/navigation/forms/SignUpForm";
+import CreateProjectForm from "/imports/ui/navigation/forms/CreateProjectForm"
 import { openDialog } from "/lib/actions/navigation";
 import { logOut } from "/lib/actions/account";
 
@@ -85,6 +86,7 @@ let NavigationRightMenu = ({ states, handlers }) => {
 				{menuList}
 		        <SignInForm />
 		    	<SignUpForm />
+		    	<CreateProjectForm />
 		</div>
 	);	
 }

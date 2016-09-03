@@ -9,6 +9,8 @@ import Divider from "material-ui/Divider";
 import SelectableListWrapper from "/imports/ui/helpers/SelectableListWraper";
 import {FlowRouter} from "meteor/kadira:flow-router";
 
+import { openDialog } from "/lib/actions/navigation";
+
 
 
 const SelectableList = SelectableListWrapper(MakeSelectable(List));
@@ -29,14 +31,16 @@ let NavigationMenu = ({states, handlers}) => {
                 divider: true
             }, {
                 subheader: 'Projects'
+            }, {
+                name:           'Add Project',
+                handlerTap:   handlers.addProject
             }
         ];
-        console.log(states);
-        // for (let item of states.projectsList){
-        //     pages.push({
-        //         name: item.name
-        //     });
-        // }
+        for (let item of states.projectsList){
+            pages.push({
+                name: item.name
+            });
+        }
 
     }
     else {
@@ -67,7 +71,7 @@ let NavigationMenu = ({states, handlers}) => {
                 } else {
                     return (
                         <ListItem
-                            value={page.route}
+                            onTouchTap={page.handlerTap}
                             key={page.name}
                         >
                             {page.name}
@@ -103,7 +107,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         handlers: {
-
+            addProject: () => {
+                dispatch(openDialog('CREATE_PROJECT'))
+            }
         }
     }
 };
