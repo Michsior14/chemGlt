@@ -96,10 +96,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                 dispatch(closeDialog());
             },
             handleAutoMembers: ( value ) => {
-                if( value.length > 2){
                     dispatch(acProjectMember(value));
-                }
-
             }   
         }
         
