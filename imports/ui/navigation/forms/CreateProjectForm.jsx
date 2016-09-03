@@ -3,6 +3,7 @@ import React, {Component, PropTypes} from "react";
 import {connect} from "react-redux";
 import Dialog from "material-ui/Dialog";
 import FlatButton from "material-ui/FlatButton";
+import RaisedButton from 'material-ui/RaisedButton';
 import AutoComplete from 'material-ui/AutoComplete';
 import Chip from 'material-ui/Chip';
 import {reduxForm, Field} from "redux-form";
@@ -34,6 +35,19 @@ let CreateProjectForm = ({
             disabled={!valid || submitting}
         />)
     ];
+    const chipList = states.membersList.map(( item ) => {
+        return (
+            <Chip
+                key={item.key}
+                onRequestDelete={() => {
+                    handlers.handleMemberDelete(item.key);
+                }}
+            >
+                {item.label}
+          </Chip>                    
+        );
+    });
+
     return (
         <div>
             <Dialog
@@ -61,9 +75,9 @@ let CreateProjectForm = ({
                     <div className="row between-xs">
                         <div 
                         className="col-md auto-width"
-                        style={states.styles.chopList}
+                        style={states.styles.chipList}
                         >
-                            {states.membersList.map(handlers.renderChip, handlers)}
+                            {chipList}
                         </div>
                     </div>                       
                     <div className="row between-xs">
@@ -73,6 +87,13 @@ let CreateProjectForm = ({
                                 hintText="Member"
                                 dataSource={states.hintMembers}
                                 onUpdateInput={handlers.handleAutoMembers}
+                            />
+                            <RaisedButton 
+                                label="Add" 
+                                style={states.styles.buttonAddMember} 
+                                onTouchTap={() => {
+                                    handlers.handleMemberAdd();
+                                }}
                             />
                         </div>
                     </div>                
@@ -98,10 +119,13 @@ const mapStateToProps = (state, ownProps) => {
                     { key: 1, label: "dupa2"}
             ]),
             styles: {
+                buttonAddMember: {
+                    margin:     12
+                },
                 chip: {
                     margin:     4
                 },
-                chopList: {
+                chipList: {
                     display:    'flex',
                     flexWrap:   'wrap'
                 }
@@ -120,21 +144,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             handleAutoMembers: ( value ) => {
                     dispatch(acProjectMember(value));
             },
+            handleMemberAdd: ( value ) => {
+
+            },            
             handleMemberDelete: ( key ) => {
 
-            },
-            renderChip: ( item ) => {
-                return (
-                    <Chip
-                        key={item.key}
-                        onRequestDelete={() => {
-                            this.handleMemberDelete(item.key);
-                        }}
-                    >
-                        {item.label}
-                  </Chip>                    
-                );
             }
+
         }
         
     }
