@@ -8,6 +8,7 @@ import Chip from 'material-ui/Chip';
 import {reduxForm, Field} from "redux-form";
 import {TextField} from "redux-form-material-ui";
 import {closeDialog} from "/lib/actions/navigation";
+import {acProjectMember} from "/lib/actions/form";
 import {signUp} from "/lib/actions/account";
 import {validateCreateProject} from "/lib/validations";
 
@@ -75,12 +76,14 @@ let CreateProjectForm = ({
 };
 
 const mapStateToProps = (state, ownProps) => {
-    const reducer = state.navigationReducer;
+    const navReducer = state.navigationReducer;
+    const formReducer = state.form.CreateProjectForm;
     return {
         states: {
-            open: (reducer.isDialog && 
-                reducer.openedDialog === 'CREATE_PROJECT'),  
-            hintMembers: hintMembers
+            open: (navReducer.isDialog && 
+                navReducer.openedDialog === 'CREATE_PROJECT'),  
+            hintMembers: ( formReducer && formReducer.hintMembers ) ?
+                formReducer.hintMembers : []
         }
         
     }
@@ -94,18 +97,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             },
             handleAutoMembers: ( value ) => {
                 if( value.length > 2){
-                    console.log(value);
-                    const usersList = Meteor.users.find({
-                        username: { $regex: value }                            
-                    }).fetch();
-                    console.log(ownProps);
-                    hintMembers = [];
-                    console.log(usersList);
-                    for(let user of usersList){
-                        console.log("Pushing: ");
-                        console.log(user.username);
-                        hintMembers.push(user.username);
-                    }
+                    dispatch(acProjectMember(value));
                 }
 
             }   
@@ -113,8 +105,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         
     }
 };
-
-let hintMembers = [];
 
 CreateProjectForm = reduxForm({
     form: 'CreateProjectForm',
