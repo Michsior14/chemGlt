@@ -59,6 +59,14 @@ let CreateProjectForm = ({
                         </div>
                     </div>  
                     <div className="row between-xs">
+                        <div 
+                        className="col-md auto-width"
+                        style={states.styles.chopList}
+                        >
+                            {states.membersList.map(handlers.renderChip, handlers)}
+                        </div>
+                    </div>                       
+                    <div className="row between-xs">
                         <div className="col-md auto-width">
                             <AutoComplete
                                 className="box auto-width"
@@ -81,9 +89,23 @@ const mapStateToProps = (state, ownProps) => {
     return {
         states: {
             open: (navReducer.isDialog && 
-                navReducer.openedDialog === 'CREATE_PROJECT'),  
-            hintMembers: ( formReducer && formReducer.hintMembers ) ?
-                formReducer.hintMembers : []
+                navReducer.openedDialog === 'CREATE_PROJECT'), 
+            hintMembers: (( formReducer && formReducer.hintMembers ) ?
+                formReducer.hintMembers : []),
+            membersList: (( formReducer && formReducer.membersList ) ?
+                formReducer.membersList : [
+                    { key: 0, label: "dupa1"},
+                    { key: 1, label: "dupa2"}
+            ]),
+            styles: {
+                chip: {
+                    margin:     4
+                },
+                chopList: {
+                    display:    'flex',
+                    flexWrap:   'wrap'
+                }
+            } 
         }
         
     }
@@ -97,7 +119,22 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             },
             handleAutoMembers: ( value ) => {
                     dispatch(acProjectMember(value));
-            }   
+            },
+            handleMemberDelete: ( key ) => {
+
+            },
+            renderChip: ( item ) => {
+                return (
+                    <Chip
+                        key={item.key}
+                        onRequestDelete={() => {
+                            this.handleMemberDelete(item.key);
+                        }}
+                    >
+                        {item.label}
+                  </Chip>                    
+                );
+            }
         }
         
     }
