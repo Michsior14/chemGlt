@@ -151,7 +151,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                 dispatch(CreateProjectActions.addMember());
             },            
             handleMemberDelete: ( key ) => {
-
+                dispatch(CreateProjectActions.deleteMember(key));
             },
             handleMemberRequest: ( value ) => {
                 console.log("handleMemberRequest");
