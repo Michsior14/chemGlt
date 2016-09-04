@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from "react";
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 
@@ -8,7 +8,10 @@ import App from '/imports/ui/App';
 
 let store = createStore(
     appReducer,
-    applyMiddleware(thunk)
+    compose(
+    	applyMiddleware(thunk),
+    	window.devToolsExtension ? window.devToolsExtension() : f => f
+    )    
 );
 
 let Root = ({}) => {
