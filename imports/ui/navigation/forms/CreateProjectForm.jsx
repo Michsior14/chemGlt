@@ -9,7 +9,7 @@ import Chip from 'material-ui/Chip';
 import {reduxForm, Field} from "redux-form";
 import {TextField} from "redux-form-material-ui";
 import {closeDialog} from "/lib/actions/navigation";
-import {acProjectMember} from "/lib/actions/form";
+import {CreateProjectActions} from "/lib/actions/form";
 import {signUp} from "/lib/actions/account";
 import {validateCreateProject} from "/lib/validations";
 
@@ -85,15 +85,15 @@ let CreateProjectForm = ({
                             <AutoComplete
                                 className="box auto-width"
                                 hintText="Member"
+                                searchText={states.addMemberField}
                                 dataSource={states.hintMembers}
-                                onUpdateInput={handlers.handleAutoMembers}
+                                onUpdateInput={handlers.handleMemberAuto}
+                                onNewRequest={handlers.handleMemberRequest}
                             />
                             <RaisedButton 
                                 label="Add" 
                                 style={states.styles.buttonAddMember} 
-                                onTouchTap={() => {
-                                    handlers.handleMemberAdd();
-                                }}
+                                onTouchTap={handlers.handleMemberAdd}
                             />
                         </div>
                     </div>                
@@ -107,6 +107,8 @@ let CreateProjectForm = ({
 const mapStateToProps = (state, ownProps) => {
     const navReducer = state.navigationReducer;
     const formReducer = state.form.CreateProjectForm;
+    console.log("membersList");
+    console.log(formReducer);
     return {
         states: {
             open: (navReducer.isDialog && 
@@ -114,10 +116,9 @@ const mapStateToProps = (state, ownProps) => {
             hintMembers: (( formReducer && formReducer.hintMembers ) ?
                 formReducer.hintMembers : []),
             membersList: (( formReducer && formReducer.membersList ) ?
-                formReducer.membersList : [
-                    { key: 0, label: "dupa1"},
-                    { key: 1, label: "dupa2"}
-            ]),
+                formReducer.membersList : []),
+            addMemberField: (( formReducer && formReducer.addMemberField ) ?
+                formReducer.addMemberField : ""),
             styles: {
                 buttonAddMember: {
                     margin:     12
@@ -141,14 +142,21 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             handleClose: () => {
                 dispatch(closeDialog());
             },
-            handleAutoMembers: ( value ) => {
-                    dispatch(acProjectMember(value));
+            handleMemberAuto: ( value ) => {
+                console.log("handleMemberAuto");
+                console.log(value);
+                dispatch(CreateProjectActions.autocompleteMember(value));
             },
-            handleMemberAdd: ( value ) => {
-
+            handleMemberAdd: ( ) => {
+                dispatch(CreateProjectActions.addMember());
             },            
             handleMemberDelete: ( key ) => {
 
+            },
+            handleMemberRequest: ( value ) => {
+                console.log("handleMemberRequest");
+                console.log(value);
+                dispatch(CreateProjectActions.updateMemberField(value));
             }
 
         }
