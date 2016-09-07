@@ -7,7 +7,7 @@ import "flexboxgrid/dist/flexboxgrid.css";
 import {NotificationSystem} from "react-notification-system";
 import {connect} from "react-redux";
 import {handleLeftNav} from "/lib/actions/navigation";
-import GraphList from "./GraphList";
+import AppRouter from "/imports/ui/AppRouter";
 
 
 const muiTheme = getMuiTheme({});
@@ -42,12 +42,12 @@ let App = ({
     openedLeft,
     handlers
 }) => {
-    const mainComponent = (<GraphList/>);
+
     return (
         <MuiThemeProvider muiTheme={muiTheme}>
             <div className={openedLeft.classNames}>
                 <NavigationTop tappedLeftNav={handlers.tappedLeftNavHandle}/>
-                {mainComponent}
+                <AppRouter />
             </div>
         </MuiThemeProvider>
     );
