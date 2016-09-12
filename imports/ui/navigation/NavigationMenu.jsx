@@ -1,5 +1,7 @@
 import React, {Component, PropTypes} from "react";
 import {connect} from "react-redux";
+import { push as pushPath } from 'react-router-redux';
+
 import Drawer from "material-ui/Drawer";
 import List from "material-ui/List/List";
 import ListItem from "material-ui/List/ListItem";
@@ -11,8 +13,8 @@ import SelectableListWrapper from "/imports/ui/helpers/SelectableListWraper";
 import { openDialog } from "/lib/actions/navigation";
 
 
-
 const SelectableList = SelectableListWrapper(MakeSelectable(List));
+
 let NavigationMenu = ({states, handlers}) => {
     let pages = null;
     if ( states.isLoggedIn ){
@@ -22,22 +24,29 @@ let NavigationMenu = ({states, handlers}) => {
             },
             {
                 name: 'Home',
-                route: '/',
+                handlerTap: () => {
+                    handlers.openView('/home');
+                }
             }, {
-                name: 'Second',
-                route: '/cos',
+                name: 'Word',
+                handlerTap: () => {
+                    handlers.openView('/word');
+                }
             }, {
                 divider: true
             }, {
                 subheader: 'Projects'
             }, {
-                name:           'Add Project',
-                handlerTap:   handlers.addProject
+                name:           'Add Project',             
+                handlerTap:     handlers.addProject
             }
         ];
         for (let item of states.projectsList){
             pages.push({
-                name: item.name
+                name:       item.name,
+                handlerTap: () => {
+                    handlers.openProject(item._id);0
+                }    
             });
         }
 
@@ -75,7 +84,7 @@ let NavigationMenu = ({states, handlers}) => {
                         >
                             {page.name}
                         </ListItem>
-                    )
+                    );
                 }
             })
             }
@@ -107,7 +116,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         handlers: {
             addProject: () => {
-                dispatch(openDialog('CREATE_PROJECT'))
+                dispatch(openDialog('CREATE_PROJECT'));
+            },
+            openProject: ( id ) => {
+                dispatch(pushPath('/project/' + id));
+            },
+            openView: ( address ) => {
+                dispatch(pushPath(address));
             }
         }
     }
