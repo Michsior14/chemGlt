@@ -35,14 +35,18 @@ injectTapEventPlugin();
 let App = ({
     main,
     openedLeft,
-    handlers
+    handlers,
+    children
 }) => {
 
     return (
+        <div>
             <div className={openedLeft.classNames}>
                 <NavigationTop tappedLeftNav={handlers.tappedLeftNavHandle}/>
-                
+
             </div>
+            {children}
+        </div>
     );
 };
 
