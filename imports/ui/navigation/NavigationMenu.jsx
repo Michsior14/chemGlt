@@ -7,7 +7,6 @@ import Subheader from "material-ui/Subheader";
 import MakeSelectable from "material-ui/List/MakeSelectable";
 import Divider from "material-ui/Divider";
 import SelectableListWrapper from "/imports/ui/helpers/SelectableListWraper";
-import {FlowRouter} from "meteor/kadira:flow-router";
 
 import { openDialog } from "/lib/actions/navigation";
 
@@ -99,7 +98,7 @@ const mapStateToProps = (state, ownProps) => {
             isLoggedIn:     state.accountReducer.isLoggedIn,
             projectsList:   state.projectsReducer.projectsList,
             isOpen:         state.navigationReducer.isLeftNav,
-            path:           FlowRouter.current().path
+            path:           window.location.pathname
         }
     };
 };
