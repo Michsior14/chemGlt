@@ -43,7 +43,6 @@ let App = ({
         <div>
             <div className={openedLeft.classNames}>
                 <NavigationTop tappedLeftNav={handlers.tappedLeftNavHandle}/>
-
             </div>
             {children}
         </div>
