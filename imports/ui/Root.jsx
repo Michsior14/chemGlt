@@ -2,14 +2,12 @@ import React, {Component, PropTypes} from "react";
 import {createStore, applyMiddleware, compose} from "redux";
 import thunk from "redux-thunk";
 import {Provider} from "react-redux";
-import {Router, Route, browserHistory} from "react-router";
+import {Router, browserHistory} from "react-router";
 import {syncHistoryWithStore} from "react-router-redux";
+import Routes from "/imports/ui/Routes"
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 import appReducer from "/lib/reducers/appReducer";
-import App from "/imports/ui/App";
-import TextEditor from "/imports/ui/text_editor/TextEditor";
-import Home from "/imports/ui/Home";
 
 let store = createStore(
     appReducer,
@@ -28,10 +26,7 @@ let Root = ({}) => {
         <Provider store={store}>
             <MuiThemeProvider muiTheme={muiTheme}>
                 <Router history={history}>
-                    <Route path="/" component={App}>
-                        <Route path="/home" component={Home}/>
-                        <Route path="/word" component={TextEditor}/>
-                    </Route>
+                    {Routes}
                 </Router>
             </MuiThemeProvider>
         </Provider>
