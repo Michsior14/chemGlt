@@ -4,7 +4,7 @@ import thunk from "redux-thunk";
 import {Provider} from "react-redux";
 import {Router, browserHistory} from "react-router";
 import {syncHistoryWithStore} from "react-router-redux";
-import Routes from "/imports/ui/Routes"
+import Routes from "/imports/ui/Routes";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 import appReducer from "/lib/reducers/appReducer";
