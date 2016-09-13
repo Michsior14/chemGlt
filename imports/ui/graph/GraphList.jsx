@@ -18,9 +18,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         handlers: {
         	onGraphDrop: ( files ) => {
+        		const projectId = ownProps.params.projectId;
         		console.log('Files:');
         		console.log(files);
-        		dispatch(graphActions.createGraphs(files, ""));
+
+        		dispatch(graphActions.createMultipleGraphs(files, projectId));
         		
 
         	}
@@ -28,7 +30,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     }
 }
 
-let  GraphList = ({ handlers }) => {
+let  GraphList = ({ handlers, states, params }) => {
 	return (
 		<div>
 			<DropZone onDrop={handlers.onGraphDrop}>
