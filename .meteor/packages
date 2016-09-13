@@ -24,3 +24,4 @@ accounts-password@1.3.0
 digilord:faker
 alanning:roles
 dburles:mongo-collection-instances
+vsivsi:file-collection
