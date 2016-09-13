@@ -45,7 +45,7 @@ let NavigationMenu = ({states, handlers}) => {
             pages.push({
                 name:       item.name,
                 handlerTap: () => {
-                    handlers.openProject(item._id);0
+                    handlers.openProject(item._id);
                 }    
             });
         }

@@ -5,6 +5,7 @@ import DropZone from 'react-dropzone';
 import { Table, TableBody, TableHeader, TableHeaderColumn } from 'material-ui/Table';
 import { TableRow, TableRowColumn } from 'material-ui/Table';
 
+import graphActions from '/lib/actions/graph';
 
 const mapStateToProps = (state, ownProps) => {
 
@@ -19,6 +20,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         	onGraphDrop: ( files ) => {
         		console.log('Files:');
         		console.log(files);
+        		dispatch(graphActions.createGraphs(files, ""));
+        		
+
         	}
         }
     }
@@ -36,9 +40,14 @@ let  GraphList = ({ handlers }) => {
 			<Table>
 				<TableHeader>
 					<TableRow>
-
+						<TableHeaderColumn>Name</TableHeaderColumn>
+						<TableHeaderColumn>Last Modified</TableHeaderColumn>
+						<TableHeaderColumn>Actions</TableHeaderColumn>
 					</TableRow>
 				</TableHeader>
+				<TableBody>
+
+				</TableBody>
 			</Table>
 		</div>
 	);
