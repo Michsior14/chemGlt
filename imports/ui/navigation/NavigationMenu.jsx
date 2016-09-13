@@ -7,15 +7,13 @@ import Subheader from "material-ui/Subheader";
 import MakeSelectable from "material-ui/List/MakeSelectable";
 import Divider from "material-ui/Divider";
 import SelectableListWrapper from "/imports/ui/helpers/SelectableListWraper";
-
-import { openDialog } from "/lib/actions/navigation";
-
+import {openDialog} from "/lib/actions/navigation";
 
 
 const SelectableList = SelectableListWrapper(MakeSelectable(List));
 let NavigationMenu = ({states, handlers}) => {
     let pages = null;
-    if ( states.isLoggedIn ){
+    if (states.isLoggedIn) {
         pages = [
             {
                 subheader: 'Page menu'
@@ -31,11 +29,11 @@ let NavigationMenu = ({states, handlers}) => {
             }, {
                 subheader: 'Projects'
             }, {
-                name:           'Add Project',
-                handlerTap:   handlers.addProject
+                name: 'Add Project',
+                handlerTap: handlers.addProject
             }
         ];
-        for (let item of states.projectsList){
+        for (let item of states.projectsList) {
             pages.push({
                 name: item.name
             });
@@ -95,10 +93,10 @@ let NavigationMenu = ({states, handlers}) => {
 const mapStateToProps = (state, ownProps) => {
     return {
         states: {
-            isLoggedIn:     state.accountReducer.isLoggedIn,
-            projectsList:   state.projectsReducer.projectsList,
-            isOpen:         state.navigationReducer.isLeftNav,
-            path:           window.location.pathname
+            isLoggedIn: state.accountReducer.isLoggedIn,
+            projectsList: state.projectsReducer.projectsList,
+            isOpen: state.navigationReducer.isLeftNav,
+            path: window.location.pathname
         }
     };
 };
