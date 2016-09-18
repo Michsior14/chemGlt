@@ -13,7 +13,5 @@ import Root from "/imports/ui/Root"
 // DocHead.addMeta(metaInfo);
 
 Meteor.startup(() => {
-	Meteor.subscribe('users');
-  	Meteor.subscribe('projects');
-  	render(<Root />, document.getElementById('render-target'));
+  render(<Root />, document.getElementById('render-target'));
 });
