@@ -2,7 +2,8 @@ import React, {Component, PropTypes} from "react";
 import {connect} from "react-redux";
 import DropZone from "react-dropzone";
 
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow} from "material-ui/Table";
+import {Table, TableBody, TableHeader, TableHeaderColumn } from "material-ui/Table";
+import { TableRow, TableRowColumn } from "material-ui/Table";
 import graphActions from "/lib/actions/graph";
 import { subscribeGraphs } from "/imports/helpers/subscribers";
 
@@ -10,7 +11,8 @@ import { subscribeGraphs } from "/imports/helpers/subscribers";
 const mapStateToProps = (state, ownProps) => {
     return {
 		states: {
-			projectId: 	state.graphReducer.projectId
+			projectId: 	state.graphReducer.projectId,
+			graphs: 	state.graphReducer.graphs
 		}
     };
 };
@@ -48,6 +50,16 @@ class GraphList extends Component {
 	
 	render(){
 		const handlers = this.props.handlers;
+		const states = this.props.states;
+
+		const graphs = states.graphs.map((item) =>
+			<TableRow key={item._id} >
+				<TableRowColumn>{item.name}</TableRowColumn>
+				<TableRowColumn></TableRowColumn>
+				<TableRowColumn></TableRowColumn>
+			</TableRow>	
+		);
+
 		return (
 			<div>
 				<DropZone onDrop={handlers.onGraphDrop}>
@@ -65,7 +77,7 @@ class GraphList extends Component {
 						</TableRow>
 					</TableHeader>
 					<TableBody>
-
+						{graphs}
 					</TableBody>
 				</Table>
 			</div>
