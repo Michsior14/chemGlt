@@ -1,9 +1,11 @@
 import React, {Component, PropTypes} from "react";
 import {connect} from "react-redux";
 import DropZone from "react-dropzone";
+import { push as pushPath } from 'react-router-redux';
 
 import {Table, TableBody, TableHeader, TableHeaderColumn } from "material-ui/Table";
 import { TableRow, TableRowColumn } from "material-ui/Table";
+import FlatButton from 'material-ui/FlatButton';
 import graphActions from "/lib/actions/graph";
 import { subscribeGraphs } from "/imports/helpers/subscribers";
 
@@ -18,8 +20,6 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-
-
     return {
         handlers: {
         	reloadView: ( projectId ) => {
@@ -29,9 +29,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         		const projectId = ownProps.params.projectId;
 
         		dispatch(graphActions.createMultipleGraphs(files, projectId));
-        		
-
-            }
+            },
+			openGraph: ( projectId, graphId ) => {
+				console.log("/project/" + projectId + "/graph/" + graphId);
+				dispatch(pushPath("/project/" + projectId + "/graph/" + graphId));
+			}
         }
     }
 }
@@ -51,12 +53,17 @@ class GraphList extends Component {
 	render(){
 		const handlers = this.props.handlers;
 		const states = this.props.states;
+		const params = this.props.params;
 
 		const graphs = states.graphs.map((item) =>
 			<TableRow key={item._id} >
 				<TableRowColumn>{item.name}</TableRowColumn>
-				<TableRowColumn></TableRowColumn>
-				<TableRowColumn></TableRowColumn>
+				<TableRowColumn>{(new Date(item.updatedAt)).toLocaleString()}</TableRowColumn>
+				<TableRowColumn>
+					<FlatButton label="Open" primary={true} onTouchTap={() => {
+						handlers.openGraph(params.projectId, item._id);
+					}}  />
+				</TableRowColumn>
 			</TableRow>	
 		);
 
