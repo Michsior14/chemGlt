@@ -9,7 +9,9 @@ import { subscribeGraphs } from "/imports/helpers/subscribers";
 
 const mapStateToProps = (state, ownProps) => {
     return {
-    	projectId: state.graphReducer.projectId
+		states: {
+			projectId: state.graphReducer.projectId
+		}
     };
 };
 
@@ -23,8 +25,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         	},
         	onGraphDrop: ( files ) => {
         		const projectId = ownProps.params.projectId;
-        		console.log('Files:');
-        		console.log(files);
 
         		dispatch(graphActions.createMultipleGraphs(files, projectId));
         		
@@ -37,11 +37,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
 let  GraphList = ({ handlers, states, params }) => {
 
-	if (params.projectId !== state.projectId){
+	if (params.projectId !== states.projectId){
 		handlers.reloadView(params.projectId);
 	}
 
-
+	
 	return (
 		<div>
 			<DropZone onDrop={handlers.onGraphDrop}>
