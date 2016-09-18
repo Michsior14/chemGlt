@@ -10,7 +10,7 @@ import { subscribeGraphs } from "/imports/helpers/subscribers";
 const mapStateToProps = (state, ownProps) => {
     return {
 		states: {
-			projectId: state.graphReducer.projectId
+			projectId: 	state.graphReducer.projectId
 		}
     };
 };
@@ -35,39 +35,47 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 
-let  GraphList = ({ handlers, states, params }) => {
+class GraphList extends Component {
 
-	if (params.projectId !== states.projectId){
-		handlers.reloadView(params.projectId);
+	componentWillMount() {
+		const handlers = this.props.handlers;
+		const params = this.props.params;
+		const states = this.props.states;
+		if (params.projectId !== states.projectId){
+			handlers.reloadView(params.projectId);
+		}
 	}
-
 	
-	return (
-		<div>
-			<DropZone onDrop={handlers.onGraphDrop}>
-				<div>
-					Drop your data files to create graphs.
-				</div>
-			</DropZone>
-			<br/>
-			<Table>
-				<TableHeader>
-					<TableRow>
-						<TableHeaderColumn>Name</TableHeaderColumn>
-						<TableHeaderColumn>Last Modified</TableHeaderColumn>
-						<TableHeaderColumn>Actions</TableHeaderColumn>
-					</TableRow>
-				</TableHeader>
-				<TableBody>
+	render(){
+		const handlers = this.props.handlers;
+		return (
+			<div>
+				<DropZone onDrop={handlers.onGraphDrop}>
+					<div>
+						Drop your data files to create graphs.
+					</div>
+				</DropZone>
+				<br/>
+				<Table>
+					<TableHeader>
+						<TableRow>
+							<TableHeaderColumn>Name</TableHeaderColumn>
+							<TableHeaderColumn>Last Modified</TableHeaderColumn>
+							<TableHeaderColumn>Actions</TableHeaderColumn>
+						</TableRow>
+					</TableHeader>
+					<TableBody>
 
-				</TableBody>
-			</Table>
-		</div>
-	);
+					</TableBody>
+				</Table>
+			</div>
+		);
+	}
+	
 }
 
 
- GraphList = connect(
+GraphList = connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(GraphList);
