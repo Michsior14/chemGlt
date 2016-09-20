@@ -19,7 +19,7 @@ let CreateProjectForm = ({
     states,
     submitting,
     handleSubmit,
-    valid }) => {
+    valid }) => {  
     const actions = [
         (<FlatButton
             label="Cancel"
@@ -196,9 +196,7 @@ CreateProjectForm = reduxForm({
     validate: validateCreateProject
 })(CreateProjectForm);
 
-CreateProjectForm = connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(CreateProjectForm);
-
-export default CreateProjectForm;

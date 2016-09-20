@@ -96,9 +96,7 @@ SignInForm = reduxForm({
     validate: validateSignIn
 })(SignInForm);
 
-SignInForm = connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(SignInForm);
-
-export default SignInForm;

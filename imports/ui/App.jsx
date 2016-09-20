@@ -70,9 +70,7 @@ let App = ({
     );
 };
 
-App = connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(App);
-
-export default App;

@@ -39,9 +39,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     };
 };
 
-NavigationTop = connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(NavigationTop);
-
-export default NavigationTop;

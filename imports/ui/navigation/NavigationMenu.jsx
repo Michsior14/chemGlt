@@ -121,9 +121,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     };
 };
 
-NavigationMenu = connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(NavigationMenu);
-
-export default NavigationMenu;

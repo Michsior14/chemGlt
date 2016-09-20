@@ -12,26 +12,19 @@ const mapStateToProps = (state, ownProps) => {
 		states: {
 			local: ownProps.local
 		}
-    };
+	};
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-
-<<<<<<< HEAD
 	return {
 		handlers: {
-
-=======
-    return {
-        handlers: {
 			handleMenuExpand: ( idx ) => {
 				let local = ownProps.local;
 				local.datasets[idx].menu.expanded = !local.datasets[idx].menu.expanded;
 				dispatch(graphActions.refreshLocal(local));
 			}
->>>>>>> d1bef884fa6112ee1f832e16867af0ecb844e9bb
-        }
-    };
+		}
+	};
 };
 
 
@@ -39,13 +32,6 @@ let GraphMenu = ({states, handlers}) => {
 
 	let rendered = (<h2>Rendering menu..</h2>);
 
-<<<<<<< HEAD
-	if (states.graph) {
-
-		rendered = (
-			<div>
-
-=======
 	if ( states.local ) {
 		const menu = states.local.datasets.map(( item, idx ) => {
 			// console.log(item);
@@ -63,7 +49,6 @@ let GraphMenu = ({states, handlers}) => {
 		rendered = (
 			<div>
 				{menu}
->>>>>>> d1bef884fa6112ee1f832e16867af0ecb844e9bb
 			</div>
 		);
 	}
@@ -71,10 +56,7 @@ let GraphMenu = ({states, handlers}) => {
 	return rendered;
 };
 
-
-GraphMenu = connect(
+export default connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(GraphMenu);
-
-export default GraphMenu;

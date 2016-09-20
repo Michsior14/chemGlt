@@ -21,10 +21,7 @@ let Error404 = ({handlers}) => {
     );
 };
 
-
-Error404 = connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(Error404);
-
-export default Error404;

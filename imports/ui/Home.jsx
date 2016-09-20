@@ -21,10 +21,7 @@ let Home = ({handlers}) => {
     );
 };
 
-
-Home = connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(Home);
-
-export default Home;

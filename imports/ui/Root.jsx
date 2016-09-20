@@ -40,6 +40,4 @@ let Root = ({}) => {
     );
 };
 
-
-
 export default Root;
