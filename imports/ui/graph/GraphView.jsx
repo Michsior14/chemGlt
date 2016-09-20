@@ -80,10 +80,10 @@ class GraphView extends Component {
                 <h1 className="text-center">{graphName}</h1>
                 <br/>
 				<div className="row" >
-					<div className="col-sm-offset-2 col-sm-6">
+					<div className="col-sm-7">
 							{graphObject}
 					</div>
-					<div className="col-sm-4">
+					<div className="col-sm-offset-1 col-sm-4">
 						<GraphMenu local={states.local} />
 					</div>					
 				</div>
