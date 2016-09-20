@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
+import FlatButton from 'material-ui/FlatButton';
 
 import graphActions from "/lib/actions/graph";
 import { subscribeGraphs } from "/imports/helpers/subscribers";
@@ -76,24 +77,36 @@ let GraphMenu = ({states, handlers}) => {
 					}}> 
 						<CardHeader title={item.label} actAsExpander showExpandableButton />
 						<CardTitle title="Fitting" expandable />
+						
 						<CardText expandable >
-							<DropDownMenu
-								onChange={( eventType, idxType, valueType ) => {
-									handlers.handleTypeFitChange(idx, valueType);
-								}}
-								value={localFitting.type}
-							>
-								{typesFitting}
-							</DropDownMenu>
-							<DropDownMenu
-								onChange={( eventType, idxType, valueDegree ) => {
-									handlers.handleDegreeFitChange(idx, valueDegree);
-								}}
-								value={localFitting.degree}
-								disabled={localFitting.type !== 'POLYNOMIAL'}
-							>
-								{degreesFitting}
-							</DropDownMenu>
+							<div className="row " >
+								<div className="col-sm-5">
+									<DropDownMenu
+										onChange={( eventType, idxType, valueType ) => {
+											handlers.handleTypeFitChange(idx, valueType);
+										}}
+										value={localFitting.type}
+									>
+										{typesFitting}
+									</DropDownMenu>
+								</div>
+								<div className="col-sm-5">
+									<DropDownMenu
+										onChange={( eventType, idxType, valueDegree ) => {
+											handlers.handleDegreeFitChange(idx, valueDegree);
+										}}
+										value={localFitting.degree}
+										disabled={localFitting.type !== 'POLYNOMIAL'}
+									>
+										{degreesFitting}
+									</DropDownMenu>
+								</div>
+								<div className="col-sm-2">
+								<CardActions>
+									<FlatButton primary label="Fit" />
+								</CardActions>
+								</div>
+							</div>
 						</CardText>
 					</Card>
 					<br/>
