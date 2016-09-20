@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         	onGraphDrop: ( files ) => {
         		const projectId = ownProps.params.projectId;
 
-        		dispatch(graphActions.createMultipleGraphs(files, projectId));
+        		dispatch(graphActions.createSingleGraph(files, projectId));
             },
 			openGraph: ( projectId, graphId ) => {
 				console.log("/project/" + projectId + "/graph/" + graphId);
@@ -58,7 +58,7 @@ class GraphList extends Component {
 		const graphs = states.graphs.map((item) =>
 			<TableRow key={item._id} >
 				<TableRowColumn>{item.name}</TableRowColumn>
-				<TableRowColumn>{(new Date(item.updatedAt)).toLocaleString()}</TableRowColumn>
+				<TableRowColumn>{item.updatedAt}</TableRowColumn>
 				<TableRowColumn>
 					<FlatButton label="Open" primary={true} onTouchTap={() => {
 						handlers.openGraph(params.projectId, item._id);
