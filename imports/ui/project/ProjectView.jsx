@@ -10,7 +10,7 @@ let ProjectView = ({handlers, states, params}) => {
         <div>
             <h2>Project {params.projectId}</h2>
             <RaisedButton label="Graphs" onTouchTap={ () => {
-                handlers.openView('/project/' + params.projectId + '/graphs');
+                handlers.openView('/project/' + params.projectId + '/graph/list');
             }} />
         </div>
     );
