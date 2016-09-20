@@ -31,8 +31,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         		dispatch(graphActions.createSingleGraph(files, projectId));
             },
 			openGraph: ( projectId, graphId ) => {
-				console.log("/project/" + projectId + "/graph/" + graphId);
 				dispatch(pushPath("/project/" + projectId + "/graph/" + graphId));
+			},
+			removeGraph: ( graphId ) => {
+				dispatch(graphActions.removeGraph(graphId));
 			}
         }
     }
@@ -60,33 +62,44 @@ class GraphList extends Component {
 				<TableRowColumn>{item.name}</TableRowColumn>
 				<TableRowColumn>{item.updatedAt}</TableRowColumn>
 				<TableRowColumn>
-					<FlatButton label="Open" primary={true} onTouchTap={() => {
+					<FlatButton label="Open" primary onTouchTap={() => {
 						handlers.openGraph(params.projectId, item._id);
 					}}  />
+					<FlatButton label="Remove" secondary onTouchTap={() => {
+						handlers.removeGraph(item._id);
+					}}  />					
 				</TableRowColumn>
 			</TableRow>	
 		);
 
 		return (
 			<div>
-				<DropZone onDrop={handlers.onGraphDrop}>
-					<div>
-						Drop your data files to create graphs.
-					</div>
-				</DropZone>
 				<br/>
-				<Table>
-					<TableHeader>
-						<TableRow>
-							<TableHeaderColumn>Name</TableHeaderColumn>
-							<TableHeaderColumn>Last Modified</TableHeaderColumn>
-							<TableHeaderColumn>Actions</TableHeaderColumn>
-						</TableRow>
-					</TableHeader>
-					<TableBody>
-						{graphs}
-					</TableBody>
-				</Table>
+				<div className="row" >
+					<div className="col-sm-2">
+					</div>
+					<div className="col-sm-6">
+						<Table>
+							<TableHeader>
+								<TableRow>
+									<TableHeaderColumn>Name</TableHeaderColumn>
+									<TableHeaderColumn>Last Modified</TableHeaderColumn>
+									<TableHeaderColumn>Actions</TableHeaderColumn>
+								</TableRow>
+							</TableHeader>
+							<TableBody>
+								{graphs}
+							</TableBody>
+						</Table>
+					</div>
+					<div className="col-sm-2">
+						<DropZone onDrop={handlers.onGraphDrop}>
+							<div>
+								Drop your data files to create graphs.
+							</div>
+						</DropZone>				
+					</div>
+				</div>
 			</div>
 		);
 	}
