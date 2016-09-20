@@ -1,14 +1,12 @@
 import React, {Component, PropTypes} from "react";
 import {connect} from "react-redux";
-import DropZone from "react-dropzone";
 
-import {Table, TableBody, TableHeader, TableHeaderColumn } from "material-ui/Table";
-import { TableRow, TableRowColumn } from "material-ui/Table";
-import { Line } from "react-chartjs-2";
+import { Line as LineChart } from "react-chartjs-2";
 
 import graphActions from "/lib/actions/graph";
 import { subscribeGraphs } from "/imports/helpers/subscribers";
 
+import GraphMenu from "/imports/ui/graph/GraphMenu";
 
 const mapStateToProps = (state, ownProps) => {
     return {
@@ -52,16 +50,12 @@ class GraphView extends Component {
 		let graphObject = (<h3>Rendering graph..</h3>);
 		if (states.graph ) {
 			const datasets = states.graph.datasets.map(( item ) => {
-				const borderColor = "rgba(" + 
-				Math.floor(Math.random() * 255) + ", " + 
-				Math.floor(Math.random() * 255) + ", " + 
-				Math.floor(Math.random() * 255) + ", 1)";
 				return Object.assign({}, item, {
 					fill: false
 				});
 			});
 			graphObject = (
-				<Line
+				<LineChart
 				data={{
 					datasets: datasets
 				}} 
@@ -82,8 +76,16 @@ class GraphView extends Component {
 			<div>
                 <h1>{graphName}</h1>
                 <br/>
+				<div className="row" >
+					<div className="col-sm-6">
+						{graphObject}
+					</div>
+					<div className="col-sm-6">
+						<GraphMenu graph={states.graph} />
+					</div>					
+				</div>
 				<div>
-					{graphObject}
+							
 				</div>
 			</div>
 		);
