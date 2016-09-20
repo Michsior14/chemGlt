@@ -13,6 +13,6 @@ export function subscribeProjects( dispatch ){
 export function subscribeGraphs( dispatch, projectId ){
 	dispatch(graphActions.orderSub(projectId));
 	Meteor.subscribe("graphs", projectId, () => {
-		dispatch(graphActions.subscribed());
+		dispatch(graphActions.subscribed(projectId));
 	});
 }
