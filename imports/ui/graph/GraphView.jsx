@@ -14,6 +14,9 @@ const mapStateToProps = (state, ownProps) => {
 			projectId: 	state.graphReducer.projectId,
 			graph: 	state.graphReducer.graphs.find(( item ) => {
                 return (item._id === ownProps.params.graphId);
+            }),
+			local: state.graphReducer.locals.find(( item ) => {
+                return (item._id === ownProps.params.graphId);
             })
 		}
     };
@@ -74,18 +77,15 @@ class GraphView extends Component {
         // let graphDatasets = states.graph ? states.graph.datasets : [];
 		return (
 			<div>
-                <h1>{graphName}</h1>
+                <h1 className="text-center">{graphName}</h1>
                 <br/>
 				<div className="row" >
-					<div className="col-sm-6">
-						{graphObject}
+					<div className="col-sm-offset-2 col-sm-6">
+							{graphObject}
 					</div>
-					<div className="col-sm-6">
-						<GraphMenu graph={states.graph} />
+					<div className="col-sm-4">
+						<GraphMenu local={states.local} />
 					</div>					
-				</div>
-				<div>
-							
 				</div>
 			</div>
 		);
