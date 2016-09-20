@@ -33,7 +33,7 @@ let GraphMenu = ({states, handlers}) => {
 
 		rendered = (
 			<div>
-
+				
 			</div>
 		);
 	}
