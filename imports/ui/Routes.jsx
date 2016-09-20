@@ -12,7 +12,7 @@ let Routes = [
     <Route path="/" component={App} key="mainRoutes">
         <Route path="home" component={Home}/>
         <Route path="word" component={TextEditor}/>
-        <Route path="project/:projectId/graphs" component={GraphList} />
+        <Route path="project/:projectId/graph/list" component={GraphList} />
         <Route path="project/:projectId/graph/:graphId" component={GraphView} />
     	<Route path="project/:projectId" component={ProjectView} />
     </Route>,
