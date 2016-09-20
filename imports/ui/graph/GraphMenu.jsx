@@ -16,13 +16,12 @@ const mapStateToProps = (state, ownProps) => {
 			local: ownProps.local,
 			options: state.graphReducer.options
 		}
-    };
+	};
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-
-    return {
-        handlers: {
+	return {
+		handlers: {
 			handleMenuExpand: ( idx ) => {
 				let local = ownProps.local;
 				local.datasets[idx].menu.expanded = !local.datasets[idx].menu.expanded;
@@ -37,17 +36,17 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 				let local = ownProps.local;
 				local.datasets[idx].fitting.degree = value;
 				dispatch(graphActions.refreshLocal(local));
-			}			
-        }
-    };
+			}
+		}
+	};
 };
 
 
 let GraphMenu = ({states, handlers}) => {
 
 	let rendered = (<h2>Rendering menu..</h2>);
-
 	const optionsFitting = states.options.fitting;
+
 	if ( states.local ) {
 		const menu = states.local.datasets.map(( item, idx ) => {
 			// console.log(item);
@@ -123,10 +122,7 @@ let GraphMenu = ({states, handlers}) => {
 	return rendered;
 };
 
-
-GraphMenu = connect(
+export default connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(GraphMenu);
-
-export default GraphMenu;

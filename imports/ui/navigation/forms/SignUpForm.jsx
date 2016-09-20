@@ -136,9 +136,7 @@ SignUpForm = reduxForm({
     validate: validateSignUp
 })(SignUpForm);
 
-SignUpForm = connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(SignUpForm);
-
-export default SignUpForm;

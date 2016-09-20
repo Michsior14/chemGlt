@@ -13,13 +13,13 @@ const mapStateToProps = (state, ownProps) => {
 		states: {
 			projectId: 	state.graphReducer.projectId,
 			graph: 	state.graphReducer.graphs.find(( item ) => {
-                return (item._id === ownProps.params.graphId);
-            }),
+				return (item._id === ownProps.params.graphId);
+			}),
 			local: state.graphReducer.locals.find(( item ) => {
-                return (item._id === ownProps.params.graphId);
-            })
+				return (item._id === ownProps.params.graphId);
+			})
 		}
-    };
+	};
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -93,10 +93,7 @@ class GraphView extends Component {
 
 }
 
-
-GraphView = connect(
+export default connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(GraphView);
-
-export default GraphView;

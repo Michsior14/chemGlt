@@ -16,7 +16,7 @@ const mapStateToProps = (state, ownProps) => {
 			projectId: state.graphReducer.projectId,
 			graphs: state.graphReducer.graphs
 		}
-    };
+	};
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -29,15 +29,15 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 				const projectId = ownProps.params.projectId;
 
 				dispatch(graphActions.createSingleGraph(files, projectId));
-            },
+			},
 			openGraph: (projectId, graphId) => {
 				dispatch(pushPath("/project/" + projectId + "/graph/" + graphId));
 			},
 			removeGraph: (graphId) => {
 				dispatch(graphActions.removeGraph(graphId));
 			}
-        }
-    };
+		}
+	};
 };
 
 
@@ -106,10 +106,7 @@ class GraphList extends Component {
 
 }
 
-
-GraphList = connect(
+export default connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(GraphList);
-
-export default GraphList;

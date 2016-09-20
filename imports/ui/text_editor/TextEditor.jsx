@@ -47,9 +47,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     };
 };
 
-TextEditor = connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(TextEditor);
-
-export default TextEditor;
