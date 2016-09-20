@@ -11,10 +11,13 @@ import GraphMenu from "/imports/ui/graph/GraphMenu";
 const mapStateToProps = (state, ownProps) => {
 	return {
 		states: {
-			projectId: state.graphReducer.projectId,
-			graph: state.graphReducer.graphs.find((item) => {
-				return (item._id === ownProps.params.graphId);
-			})
+			projectId: 	state.graphReducer.projectId,
+			graph: 	state.graphReducer.graphs.find(( item ) => {
+                return (item._id === ownProps.params.graphId);
+            }),
+			local: state.graphReducer.locals.find(( item ) => {
+                return (item._id === ownProps.params.graphId);
+            })
 		}
     };
 };
@@ -26,8 +29,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 			reloadView: (projectId) => {
 				subscribeGraphs(dispatch, projectId);
 			},
-        }
-    };
+		}
+	};
 };
 
 
@@ -74,18 +77,15 @@ class GraphView extends Component {
         // let graphDatasets = states.graph ? states.graph.datasets : [];
 		return (
 			<div>
-                <h1>{graphName}</h1>
+                <h1 className="text-center">{graphName}</h1>
                 <br/>
 				<div className="row" >
-					<div className="col-sm-6">
-						{graphObject}
+					<div className="col-sm-offset-2 col-sm-6">
+							{graphObject}
 					</div>
-					<div className="col-sm-6">
-						<GraphMenu graph={states.graph} />
-					</div>
-				</div>
-				<div>
-
+					<div className="col-sm-4">
+						<GraphMenu local={states.local} />
+					</div>					
 				</div>
 			</div>
 		);
