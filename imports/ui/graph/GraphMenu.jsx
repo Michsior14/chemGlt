@@ -78,7 +78,6 @@ let GraphMenu = ({states, handlers}) => {
 						<CardTitle title="Fitting" expandable />
 						
 						<CardText expandable >
-<<<<<<< HEAD
 							<div className="row " >
 								<div className="col-sm-5">
 									<DropDownMenu
@@ -107,25 +106,6 @@ let GraphMenu = ({states, handlers}) => {
 								</CardActions>
 								</div>
 							</div>
-=======
-							<DropDownMenu
-								onChange={( eventType, idxType, valueType ) => {
-									handlers.handleTypeFitChange(idx, valueType);
-								}}
-								value={localFitting.type}
-							>
-								{typesFitting}
-							</DropDownMenu>
-							<DropDownMenu
-								onChange={( eventType, idxType, valueDegree ) => {
-									handlers.handleDegreeFitChange(idx, valueDegree);
-								}}
-								value={localFitting.degree}
-								disabled={localFitting.type !== "POLYNOMIAL"}
-							>
-								{degreesFitting}
-							</DropDownMenu>
->>>>>>> 0569b60c6726b16e70decd04756d3789e57f0799
 						</CardText>
 					</Card>
 					<br/>
