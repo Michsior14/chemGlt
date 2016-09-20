@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from "react";
 
 const propTypes = {
     children: PropTypes.node.isRequired
-}
+};
 
 class EditorButtons extends Component {
     constructor(props) {
