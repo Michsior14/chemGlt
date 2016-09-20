@@ -89,6 +89,7 @@ let GraphMenu = ({states, handlers}) => {
 									handlers.handleDegreeFitChange(idx, valueDegree);
 								}}
 								value={localFitting.degree}
+								disabled={localFitting.type !== 'POLYNOMIAL'}
 							>
 								{degreesFitting}
 							</DropDownMenu>
