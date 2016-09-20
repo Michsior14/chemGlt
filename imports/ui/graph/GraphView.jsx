@@ -51,10 +51,19 @@ class GraphView extends Component {
 
 		let graphObject = (<h3>Rendering graph..</h3>);
 		if (states.graph ) {
+			const datasets = states.graph.datasets.map(( item ) => {
+				const borderColor = "rgba(" + 
+				Math.floor(Math.random() * 255) + ", " + 
+				Math.floor(Math.random() * 255) + ", " + 
+				Math.floor(Math.random() * 255) + ", 1)";
+				return Object.assign({}, item, {
+					fill: false
+				});
+			});
 			graphObject = (
 				<Line
 				data={{
-					datasets: states.graph.datasets
+					datasets: datasets
 				}} 
 				options={{
 					scales: {
@@ -64,7 +73,7 @@ class GraphView extends Component {
 						}]
 					}
 				}} 
-				width={600} height={250} redraw />
+				redraw />
 			);
 		} 
         const graphName = states.graph ? states.graph.name : "";
@@ -73,7 +82,9 @@ class GraphView extends Component {
 			<div>
                 <h1>{graphName}</h1>
                 <br/>
-				{graphObject}
+				<div>
+					{graphObject}
+				</div>
 			</div>
 		);
 	}

@@ -20,6 +20,12 @@ const utilities = {
     },
     getNow: () => {
         return new Date(Date.now()).toLocaleString();
+    },
+    randomColor: () => {
+        return "rgba(" + 
+				Math.floor(Math.random() * 255) + ", " + 
+				Math.floor(Math.random() * 255) + ", " + 
+				Math.floor(Math.random() * 255) + ", 1)";
     }
 }
 
