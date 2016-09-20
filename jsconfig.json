@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "es6"
+    },
+    "exclude": [
+        "node_modules",
+        ".meteor",
+        ".idea",
+        ".vscode"
+    ],
+    "files": [
+        "client/*",
+        "server/*",
+        "lib/*",
+        "imports/*"
+    ]
+}

@@ -10,7 +10,7 @@ import { subscribeGraphs } from "/imports/helpers/subscribers";
 
 
 const mapStateToProps = (state, ownProps) => {
-    return {
+	return {
 		states: {
 			local: ownProps.local,
 			options: state.graphReducer.options
@@ -38,13 +38,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 				dispatch(graphActions.refreshLocal(local));
 			}			
         }
-    }
-}
+    };
+};
 
 
 let GraphMenu = ({states, handlers}) => {
 
 	let rendered = (<h2>Rendering menu..</h2>);
+
 	const optionsFitting = states.options.fitting;
 	if ( states.local ) {
 		const menu = states.local.datasets.map(( item, idx ) => {
@@ -107,7 +108,7 @@ let GraphMenu = ({states, handlers}) => {
 	}
 
 	return rendered;
-}
+};
 
 
 GraphMenu = connect(

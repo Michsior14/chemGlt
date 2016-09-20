@@ -28,8 +28,8 @@ const history = syncHistoryWithStore(browserHistory, store);
 const muiTheme = getMuiTheme({});
 
 
-let Root = ({}) => {
-    return (
+let Root = ({}) => {    
+    return(
         <Provider store={store}>
             <MuiThemeProvider muiTheme={muiTheme}>
                 <Router history={history}>

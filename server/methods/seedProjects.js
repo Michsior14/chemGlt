@@ -1,11 +1,11 @@
 import { Meteor } from "meteor/meteor";
-import Seed from "../seed"
+import Seed from "../seed";
 
-Meteor.methods( {
+Meteor.methods({
 
-	seedProjects(){
+	seedProjects() {
 
-		Seed( 'projects', {
+		Seed("projects", {
 			data: [
 				{
 					name: "Testing Project",
@@ -13,14 +13,14 @@ Meteor.methods( {
 					dateCreated: Date.now(),
 					members: [
 						Meteor.users.findOne({
-							username: 'HopkinsFBI'
+							username: "HopkinsFBI"
 						})._id,
 						Meteor.users.findOne({
-							username: 'Samantha'
+							username: "Samantha"
 						})._id
 					]
 				}
 			]
 		});
 	}
-} );
+});

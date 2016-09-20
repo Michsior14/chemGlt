@@ -10,7 +10,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         handlers: {}
-    }
+    };
 };
 
 let Error404 = ({handlers}) => {

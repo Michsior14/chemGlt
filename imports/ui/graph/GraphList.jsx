@@ -1,44 +1,44 @@
 import React, {Component, PropTypes} from "react";
 import {connect} from "react-redux";
 import DropZone from "react-dropzone";
-import { push as pushPath } from 'react-router-redux';
+import { push as pushPath } from "react-router-redux";
 
 import {Table, TableBody, TableHeader, TableHeaderColumn } from "material-ui/Table";
 import { TableRow, TableRowColumn } from "material-ui/Table";
-import FlatButton from 'material-ui/FlatButton';
+import FlatButton from "material-ui/FlatButton";
 import graphActions from "/lib/actions/graph";
 import { subscribeGraphs } from "/imports/helpers/subscribers";
 
 
 const mapStateToProps = (state, ownProps) => {
-    return {
+	return {
 		states: {
-			projectId: 	state.graphReducer.projectId,
-			graphs: 	state.graphReducer.graphs
+			projectId: state.graphReducer.projectId,
+			graphs: state.graphReducer.graphs
 		}
     };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        handlers: {
-        	reloadView: ( projectId ) => {
-        		subscribeGraphs(dispatch, projectId);
-        	},
-        	onGraphDrop: ( files ) => {
-        		const projectId = ownProps.params.projectId;
+	return {
+		handlers: {
+			reloadView: (projectId) => {
+				subscribeGraphs(dispatch, projectId);
+			},
+			onGraphDrop: (files) => {
+				const projectId = ownProps.params.projectId;
 
-        		dispatch(graphActions.createSingleGraph(files, projectId));
+				dispatch(graphActions.createSingleGraph(files, projectId));
             },
-			openGraph: ( projectId, graphId ) => {
+			openGraph: (projectId, graphId) => {
 				dispatch(pushPath("/project/" + projectId + "/graph/" + graphId));
 			},
-			removeGraph: ( graphId ) => {
+			removeGraph: (graphId) => {
 				dispatch(graphActions.removeGraph(graphId));
 			}
         }
-    }
-}
+    };
+};
 
 
 class GraphList extends Component {
@@ -47,12 +47,12 @@ class GraphList extends Component {
 		const handlers = this.props.handlers;
 		const params = this.props.params;
 		const states = this.props.states;
-		if (params.projectId !== states.projectId){
+		if (params.projectId !== states.projectId) {
 			handlers.reloadView(params.projectId);
 		}
 	}
-	
-	render(){
+
+	render() {
 		const handlers = this.props.handlers;
 		const states = this.props.states;
 		const params = this.props.params;
@@ -64,12 +64,12 @@ class GraphList extends Component {
 				<TableRowColumn>
 					<FlatButton label="Open" primary onTouchTap={() => {
 						handlers.openGraph(params.projectId, item._id);
-					}}  />
+					} }  />
 					<FlatButton label="Remove" secondary onTouchTap={() => {
 						handlers.removeGraph(item._id);
-					}}  />					
+					} }  />
 				</TableRowColumn>
-			</TableRow>	
+			</TableRow>
 		);
 
 		return (
@@ -97,13 +97,13 @@ class GraphList extends Component {
 							<div>
 								Drop your data files to create graphs.
 							</div>
-						</DropZone>				
+						</DropZone>
 					</div>
 				</div>
 			</div>
 		);
 	}
-	
+
 }
 
 

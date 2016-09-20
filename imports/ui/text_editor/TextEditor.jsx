@@ -12,7 +12,7 @@ let TextEditor = ({states, handlers}) => {
             <EditorButtons>
                 <FlatButton
                     label="Save"
-                />
+                    />
             </EditorButtons>
             <Editor
                 editorState={states.editor}
@@ -20,9 +20,9 @@ let TextEditor = ({states, handlers}) => {
                 handleKeyCommand={handlers.keyCommand}
                 keyBindingFn={handlers.keyBinding}
                 spellChecks
-            />
+                />
         </div>
-    )
+    );
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -44,7 +44,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                 return dispatch(keyCommandHandler(command));
             }
         }
-    }
+    };
 };
 
 TextEditor = connect(

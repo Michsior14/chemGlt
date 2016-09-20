@@ -9,27 +9,27 @@ import {signIn} from "/lib/actions/account";
 import {validateSignIn} from "/lib/validations";
 
 
-let SignInForm = ({ 
-    handleClose, 
-    submitting,  
-    open, 
-    handleSubmit, 
+let SignInForm = ({
+    handleClose,
+    submitting,
+    open,
+    handleSubmit,
     valid }) => {
     const actions = [
-                (<FlatButton
-                    label="Cancel"
-                    primary
-                    onTouchTap={handleClose}
-                />),
-                (<FlatButton
-                    type="submit"
-                    label="Login"
-                    primary
-                    keyboardFocused
-                    form="loginForm"
-                    disabled={!valid || submitting}
-                />)
-            ];
+        (<FlatButton
+            label="Cancel"
+            primary
+            onTouchTap={handleClose}
+            />),
+        (<FlatButton
+            type="submit"
+            label="Login"
+            primary
+            keyboardFocused
+            form="loginForm"
+            disabled={!valid || submitting}
+            />)
+    ];
     return (
         <div>
             <Dialog
@@ -38,11 +38,11 @@ let SignInForm = ({
                 modal={false}
                 open={open}
                 onRequestClose={handleClose}
-            >
+                >
                 <form
                     id="loginForm"
                     onSubmit={handleSubmit}
-                >
+                    >
                     <div className="row between-xs">
                         <div className="col-md auto-width">
                             <Field
@@ -51,7 +51,7 @@ let SignInForm = ({
                                 className="box auto-width"
                                 hintText="E-mail"
                                 floatingLabelText="E-mail"
-                            />
+                                />
                         </div>
                         <div className="col-md auto-width">
                             <Field
@@ -61,7 +61,7 @@ let SignInForm = ({
                                 hintText="Password"
                                 floatingLabelText="Password"
                                 type="password"
-                            />
+                                />
                         </div>
                     </div>
                 </form>
@@ -76,8 +76,8 @@ let SignInForm = ({
 const mapStateToProps = (state, ownProps) => {
     const reducer = state.navigationReducer;
     return {
-        open: (reducer.isDialog && reducer.openedDialog === 'SIGN_IN')
-    }
+        open: (reducer.isDialog && reducer.openedDialog === "SIGN_IN")
+    };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -85,11 +85,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         handleClose: () => {
             dispatch(closeDialog());
         }
-    }
+    };
 };
 
 SignInForm = reduxForm({
-    form: 'SignInForm',
+    form: "SignInForm",
     onSubmit: (data, dispatch) => {
         dispatch(signIn(data));
     },

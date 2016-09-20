@@ -16,13 +16,13 @@ const mapStateToProps = (state, ownProps) => {
         states: {
             isStartup: state.navigationReducer.isStartup,
             isLoaded: !(
-                state.navigationReducer.isStartup   ||
-                state.graphReducer.waiting          ||
-                state.projectsReducer.waiting        || 
-                state.accountReducer.waiting        
+                state.navigationReducer.isStartup ||
+                state.graphReducer.waiting ||
+                state.projectsReducer.waiting ||
+                state.accountReducer.waiting
             ),
             openedLeft: {
-                main: 'HOME',
+                main: "HOME",
                 toggled: state.navigationReducer.isLeftNav,
                 classNames: state.navigationReducer.isLeftNav ?
                     "navigation-open" : "navigation-closed"
@@ -43,7 +43,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                 dispatch(finishStartup());
             }
         }
-    }
+    };
 };
 
 
@@ -56,7 +56,7 @@ let App = ({
     children
 }) => {
 
-    if ( states.isStartup ){
+    if (states.isStartup) {
         handlers.startup();
     }
 
@@ -64,8 +64,8 @@ let App = ({
         <Loader loaded={states.isLoaded} scale={3} >
             <div className={states.openedLeft.classNames}>
                 <NavigationTop tappedLeftNav={handlers.tappedLeftNavHandle}/>
+                {children}
             </div>
-            {children}
         </Loader>
     );
 };
