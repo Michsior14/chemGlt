@@ -1,11 +1,11 @@
 import { Meteor } from "meteor/meteor";
-import Seed from "../seed"
+import Seed from "../seed";
 
-Meteor.methods( {
+Meteor.methods({
 
-	seedUsers(){
+	seedUsers() {
 
-		Seed( 'users', {
+		Seed("users", {
 			data: [
 				{
 					username: "HopkinsFBI",
@@ -14,10 +14,10 @@ Meteor.methods( {
 					profile: {
 						name: {
 							first: "Rafal",
-							last:  "Klimek"
+							last: "Klimek"
 						}
 					},
-					roles: [ 'admin' ]
+					roles: ["admin"]
 				},
 				{
 					username: "Samantha",
@@ -26,12 +26,12 @@ Meteor.methods( {
 					profile: {
 						name: {
 							first: "Michau",
-							last:  "Mrozek"
+							last: "Mrozek"
 						}
 					},
-					roles: [ 'admin' ]
+					roles: ["admin"]
 				}
 			]
 		});
 	}
-} );
+});

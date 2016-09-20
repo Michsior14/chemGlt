@@ -17,24 +17,20 @@ let NavigationMenu = ({states, handlers}) => {
     if (states.isLoggedIn) {
         pages = [
             {
-                subheader: 'Page menu'
+                subheader: "Page menu"
             },
             {
-                name: 'Home',
-                handlerTap: () => {
-                    handlers.openView('/home');
-                }
+                name: "Home",
+                route: "/home"
             }, {
-                name: 'Word',
-                handlerTap: () => {
-                    handlers.openView('/word');
-                }
+                name: "Word",
+                route: "/word"
             }, {
                 divider: true
             }, {
-                subheader: 'Projects'
+                subheader: "Projects"
             }, {
-                name: 'Add Project',
+                name: "Add Project",
                 handlerTap: handlers.addProject
             }
         ];
@@ -51,34 +47,35 @@ let NavigationMenu = ({states, handlers}) => {
     else {
         pages = [
             {
-                subheader: 'You have to be logged in.'
+                subheader: "You have to be logged in."
             }
-        ]
+        ];
     }
     const menuItems = (
-        <SelectableList defaultValue={states.path}>
+        <SelectableList defaultValue={window.location.pathname}>
             {pages.map((page, index) => {
                 if (page.subheader) {
                     return (
                         <Subheader
                             key={index}
-                        >
+                            >
                             {page.subheader}
                         </Subheader>
-                    )
+                    );
                 }
                 else if (page.divider) {
                     return (
                         <Divider
                             key={index}
-                        />
-                    )
+                            />
+                    );
                 } else {
                     return (
                         <ListItem
-                            onTouchTap={page.handlerTap}
+                            onTouchTap={page.route ? () => { handlers.openView(page.route); } : page.handlerTap }
+                            value={page.route}
                             key={page.name}
-                        >
+                            >
                             {page.name}
                         </ListItem>
                     );
@@ -93,9 +90,9 @@ let NavigationMenu = ({states, handlers}) => {
             <Drawer
                 open={states.isOpen}
                 children={menuItems}
-            />
+                />
         </div>
-    )
+    );
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -103,8 +100,7 @@ const mapStateToProps = (state, ownProps) => {
         states: {
             isLoggedIn: state.accountReducer.isLoggedIn,
             projectsList: state.projectsReducer.projectsList,
-            isOpen: state.navigationReducer.isLeftNav,
-            path: window.location.pathname
+            isOpen: state.navigationReducer.isLeftNav
         }
     };
 };
@@ -113,16 +109,16 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         handlers: {
             addProject: () => {
-                dispatch(openDialog('CREATE_PROJECT'));
+                dispatch(openDialog("CREATE_PROJECT"));
             },
             openProject: (id) => {
-                dispatch(pushPath('/project/' + id));
+                dispatch(pushPath("/project/" + id));
             },
             openView: (address) => {
                 dispatch(pushPath(address));
             }
         }
-    }
+    };
 };
 
 NavigationMenu = connect(

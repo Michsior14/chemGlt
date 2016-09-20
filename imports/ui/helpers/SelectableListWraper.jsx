@@ -1,44 +1,45 @@
-
 function SelectableListWrapper(ComposedComponent) {
-    import React, {Component, PropTypes} from "react";
-
-    const propTypes = {
-        children: PropTypes.node.isRequired,
-        defaultValue: PropTypes.number.isRequired,
+	import React, {Component, PropTypes} from "react";
+	
+	const propTypes = {
+		children: PropTypes.node.isRequired,
+		defaultValue: PropTypes.number.isRequired,
     };
 
-    const toReturn = class extends Component {
-        constructor(props){
-            super(props);
-            this.handleRequestChange = this.handleRequestChange.bind(this);
+	const toReturn = class extends Component {
+		constructor(props) {
+			super(props);
+			this.handleRequestChange = this.handleRequestChange.bind(this);
         }
 
-        componentWillMount() {
-            this.setState({
-                selectedIndex: this.props.defaultValue,
+		componentWillMount() {
+			this.setState({
+				selectedIndex: this.props.defaultValue,
             });
         }
 
-        handleRequestChange(event, index) {
-            this.setState({
-                selectedIndex: index,
-            });
-        };
+		handleRequestChange(event, index) {
+			if (index) {
+				this.setState({
+					selectedIndex: index,
+                });
+            }
+        }
 
-        render() {
-            return (
+		render() {
+			return (
                 <ComposedComponent
                     value={this.state.selectedIndex}
                     onChange={this.handleRequestChange}
-                >
+                    >
                     {this.props.children}
                 </ComposedComponent>
             );
         }
     };
-    toReturn.PropTypes = propTypes;
+	toReturn.PropTypes = propTypes;
 
-    return toReturn;
+	return toReturn;
 }
 
 export default SelectableListWrapper;

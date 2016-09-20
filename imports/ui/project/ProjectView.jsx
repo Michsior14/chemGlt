@@ -1,8 +1,8 @@
 import React, {Component, PropTypes} from "react";
 import {connect} from "react-redux";
-import { push as pushPath } from 'react-router-redux';
+import { push as pushPath } from "react-router-redux";
 
-import RaisedButton from 'material-ui/RaisedButton';
+import RaisedButton from "material-ui/RaisedButton";
 
 
 let ProjectView = ({handlers, states, params}) => {
@@ -10,8 +10,8 @@ let ProjectView = ({handlers, states, params}) => {
         <div>
             <h2>Project {params.projectId}</h2>
             <RaisedButton label="Graphs" onTouchTap={ () => {
-                handlers.openView('/project/' + params.projectId + '/graph/list');
-            }} />
+                handlers.openView("/project/" + params.projectId + "/graph/list");
+            } } />
         </div>
     );
 };
@@ -28,11 +28,11 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         handlers: {
-            openView: ( address ) => {
+            openView: (address) => {
                 dispatch(pushPath(address));
             }
         }
-    }
+    };
 };
 
 ProjectView = connect(

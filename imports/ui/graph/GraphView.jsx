@@ -9,26 +9,26 @@ import { subscribeGraphs } from "/imports/helpers/subscribers";
 import GraphMenu from "/imports/ui/graph/GraphMenu";
 
 const mapStateToProps = (state, ownProps) => {
-    return {
+	return {
 		states: {
-			projectId: 	state.graphReducer.projectId,
-			graph: 	state.graphReducer.graphs.find(( item ) => {
-                return (item._id === ownProps.params.graphId);
-            })
+			projectId: state.graphReducer.projectId,
+			graph: state.graphReducer.graphs.find((item) => {
+				return (item._id === ownProps.params.graphId);
+			})
 		}
     };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
 
-    return {
-        handlers: {
-        	reloadView: ( projectId ) => {
-        		subscribeGraphs(dispatch, projectId);
-        	},
+	return {
+		handlers: {
+			reloadView: (projectId) => {
+				subscribeGraphs(dispatch, projectId);
+			},
         }
-    }
-}
+    };
+};
 
 
 class GraphView extends Component {
@@ -37,40 +37,40 @@ class GraphView extends Component {
 		const handlers = this.props.handlers;
 		const params = this.props.params;
 		const states = this.props.states;
-		if (params.projectId !== states.projectId){
+		if (params.projectId !== states.projectId) {
 			handlers.reloadView(params.projectId);
 		}
 	}
-	
-	render(){
+
+	render() {
 		const handlers = this.props.handlers;
 		const states = this.props.states;
-        const params = this.props.params;
+		const params = this.props.params;
 
 		let graphObject = (<h3>Rendering graph..</h3>);
-		if (states.graph ) {
-			const datasets = states.graph.datasets.map(( item ) => {
+		if (states.graph) {
+			const datasets = states.graph.datasets.map((item) => {
 				return Object.assign({}, item, {
 					fill: false
 				});
 			});
 			graphObject = (
 				<LineChart
-				data={{
-					datasets: datasets
-				}} 
-				options={{
-					scales: {
-						xAxes: [{
-							type: 'linear',
-                			position: 'bottom'							
-						}]
-					}
-				}} 
-				redraw />
+					data={{
+						datasets: datasets
+					}}
+					options={{
+						scales: {
+							xAxes: [{
+								type: "linear",
+								position: "bottom"
+							}]
+						}
+					}}
+					redraw />
 			);
-		} 
-        const graphName = states.graph ? states.graph.name : "";
+		}
+		const graphName = states.graph ? states.graph.name : "";
         // let graphDatasets = states.graph ? states.graph.datasets : [];
 		return (
 			<div>
@@ -82,15 +82,15 @@ class GraphView extends Component {
 					</div>
 					<div className="col-sm-6">
 						<GraphMenu graph={states.graph} />
-					</div>					
+					</div>
 				</div>
 				<div>
-							
+
 				</div>
 			</div>
 		);
 	}
-	
+
 }
 
 

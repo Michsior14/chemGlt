@@ -16,7 +16,7 @@ let NavigationTop = ({handlers}) => (
             onTouchTap={handlers.handleBarTouch}
             onLeftIconButtonTouchTap={handlers.handleNavigationMenuTouch}
             iconElementRight={rightMenu}
-        >
+            >
             <NavigationMenu />
         </AppBar>
     </div>
@@ -36,7 +36,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
             }
         }
-    }
+    };
 };
 
 NavigationTop = connect(

@@ -9,27 +9,27 @@ import {signUp} from "/lib/actions/account";
 import {validateSignUp} from "/lib/validations";
 
 
-let SignUpForm = ({ 
-    handleClose, 
-    submitting,  
-    open, 
-    handleSubmit, 
+let SignUpForm = ({
+    handleClose,
+    submitting,
+    open,
+    handleSubmit,
     valid }) => {
     const actions = [
-                (<FlatButton
-                    label="Cancel"
-                    primary
-                    onTouchTap={handleClose}
-                />),
-                (<FlatButton
-                    type="submit"
-                    label="Submit"
-                    primary
-                    keyboardFocused
-                    form="signUpForm"
-                    disabled={!valid || submitting}
-                />)
-            ];
+        (<FlatButton
+            label="Cancel"
+            primary
+            onTouchTap={handleClose}
+            />),
+        (<FlatButton
+            type="submit"
+            label="Submit"
+            primary
+            keyboardFocused
+            form="signUpForm"
+            disabled={!valid || submitting}
+            />)
+    ];
     return (
         <div>
             <Dialog
@@ -38,11 +38,11 @@ let SignUpForm = ({
                 modal={false}
                 open={open}
                 onRequestClose={handleClose}
-            >
+                >
                 <form
                     id="signUpForm"
                     onSubmit={handleSubmit}
-                >
+                    >
                     <div className="row between-xs">
                         <div className="col-md auto-width">
                             <Field
@@ -51,9 +51,9 @@ let SignUpForm = ({
                                 className="box auto-width"
                                 hintText="Username"
                                 floatingLabelText="Username"
-                            />
+                                />
                         </div>
-                    </div>  
+                    </div>
                     <div className="row between-xs">
                         <div className="col-md auto-width">
                             <Field
@@ -62,7 +62,7 @@ let SignUpForm = ({
                                 className="box auto-width"
                                 hintText="E-mail"
                                 floatingLabelText="E-mail"
-                            />
+                                />
                         </div>
                         <div className="col-md auto-width">
                             <Field
@@ -72,9 +72,9 @@ let SignUpForm = ({
                                 hintText="Password"
                                 floatingLabelText="Password"
                                 type="password"
-                            />
+                                />
                         </div>
-                    </div>                
+                    </div>
                     <div className="row between-xs">
                         <div className="col-md auto-width">
                             <Field
@@ -83,7 +83,7 @@ let SignUpForm = ({
                                 className="box auto-width"
                                 hintText="Firstname"
                                 floatingLabelText="Firstname"
-                            />
+                                />
                         </div>
                         <div className="col-md auto-width">
                             <Field
@@ -92,7 +92,7 @@ let SignUpForm = ({
                                 className="box auto-width"
                                 hintText="Lastname"
                                 floatingLabelText="Lastname"
-                            />
+                                />
                         </div>
                     </div>
                 </form>
@@ -105,8 +105,8 @@ let SignUpForm = ({
 const mapStateToProps = (state, ownProps) => {
     const reducer = state.navigationReducer;
     return {
-        open: (reducer.isDialog && reducer.openedDialog === 'SIGN_UP')
-    }
+        open: (reducer.isDialog && reducer.openedDialog === "SIGN_UP")
+    };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -114,20 +114,20 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         handleClose: () => {
             dispatch(closeDialog());
         }
-    }
+    };
 };
 
 SignUpForm = reduxForm({
-    form: 'SignUpForm',
+    form: "SignUpForm",
     onSubmit: (data, dispatch) => {
         const newUser = {
-            username:       data.username,
-            email:          data.email,
-            password:       data.password,
+            username: data.username,
+            email: data.email,
+            password: data.password,
             profile: {
                 name: {
-                    first:  data.firstname,
-                    last:   data.lastname
+                    first: data.firstname,
+                    last: data.lastname
                 }
             }
         };
