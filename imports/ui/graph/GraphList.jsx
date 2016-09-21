@@ -33,8 +33,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 			openGraph: (projectId, graphId) => {
 				dispatch(pushPath("/project/" + projectId + "/graph/" + graphId));
 			},
-			removeGraph: (graphId) => {
-				dispatch(graphActions.removeGraph(graphId));
+			removeGraph: (projectId, graphId) => {
+				dispatch(graphActions.removeGraph(projectId, graphId));
 			}
 		}
 	};
@@ -66,7 +66,7 @@ class GraphList extends Component {
 						handlers.openGraph(params.projectId, item._id);
 					} }  />
 					<FlatButton label="Remove" secondary onTouchTap={() => {
-						handlers.removeGraph(item._id);
+						handlers.removeGraph(params.projectId, item._id);
 					} }  />
 				</TableRowColumn>
 			</TableRow>

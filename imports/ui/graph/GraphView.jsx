@@ -84,7 +84,7 @@ class GraphView extends Component {
 							{graphObject}
 					</div>
 					<div className="col-sm-offset-1 col-sm-4">
-						<GraphMenu local={states.local} />
+						<GraphMenu local={states.local} graph={states.graph} />
 					</div>					
 				</div>
 			</div>

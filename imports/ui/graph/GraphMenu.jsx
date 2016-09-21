@@ -14,6 +14,7 @@ const mapStateToProps = (state, ownProps) => {
 	return {
 		states: {
 			local: ownProps.local,
+			graph: ownProps.graph,
 			options: state.graphReducer.options
 		}
 	};
@@ -36,6 +37,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 				let local = ownProps.local;
 				local.datasets[idx].fitting.degree = value;
 				dispatch(graphActions.refreshLocal(local));
+			},
+			handleFitting: (idx, typeFit, degreeFit) => {
+				dispatch(graphActions.createFit(ownProps.graph, idx, typeFit, degreeFit));
 			}
 		}
 	};
@@ -48,7 +52,11 @@ let GraphMenu = ({states, handlers}) => {
 	const optionsFitting = states.options.fitting;
 
 	if ( states.local ) {
-		const menu = states.local.datasets.map(( item, idx ) => {
+		const menu = states.local.datasets
+		.filter(( item ) => {
+			return (item.origin === "dataset");
+		})
+		.map(( item, idx ) => {
 			// console.log(item);
 			const localFitting = item.fitting;
 			const typesFitting = optionsFitting.type.map(( typeOption, idxOption ) => {
@@ -102,7 +110,9 @@ let GraphMenu = ({states, handlers}) => {
 								</div>
 								<div className="col-sm-2">
 								<CardActions>
-									<FlatButton primary label="Fit" />
+									<FlatButton primary label="Fit" onTouchTap={() => {
+										handlers.handleFitting(idx, localFitting.type, localFitting.degree);
+									}} />
 								</CardActions>
 								</div>
 							</div>

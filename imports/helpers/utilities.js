@@ -24,6 +24,9 @@ const utilities = {
 			Math.floor(Math.random() * 255) + ", " +
 			Math.floor(Math.random() * 255) + ", " +
 			Math.floor(Math.random() * 255) + ", 1)";
+	},
+	deepCopy: ( item ) => {
+		return JSON.parse(JSON.stringify(item));
 	}
 };
 
