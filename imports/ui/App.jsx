@@ -22,7 +22,6 @@ const mapStateToProps = (state, ownProps) => {
                 state.accountReducer.waiting
             ),
             openedLeft: {
-                main: "HOME",
                 toggled: state.navigationReducer.isLeftNav,
                 classNames: state.navigationReducer.isLeftNav ?
                     "navigation-open" : "navigation-closed"
@@ -50,7 +49,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 injectTapEventPlugin();
 // App component - represents the whole app
 let App = ({
-    main,
     states,
     handlers,
     children
