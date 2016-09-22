@@ -9,13 +9,13 @@ import GraphView from "/imports/ui/graph/GraphView";
 import ProjectView from "/imports/ui/project/ProjectView";
 
 let Routes = [
-    <Route path="/" component={App} key="mainRoutes">
-        <Route path="home" component={Home}/>
-        <Route path="word" component={TextEditor}/>
-        <Route path="project/:projectId/graph/list" component={GraphList} />
-        <Route path="project/:projectId/graph/:graphId" component={GraphView} />
-        <Route path="project/:projectId" component={ProjectView} />
-    </Route>,
-    <Route path="*" component={Error404} key="errorRoutes"/>
+	<Route path="/" component={App} key="mainRoutes">
+		<Route path="home" component={Home}/>
+		<Route path="word" component={TextEditor}/>
+		<Route path="project/:projectId/graph/list" component={GraphList} />
+		<Route path="project/:projectId/graph/:graphId" component={GraphView} />
+		<Route path="project/:projectId" component={ProjectView} />
+	</Route>,
+	<Route path="*" component={Error404} key="errorRoutes"/>
 ];
 export default Routes;

@@ -15,12 +15,12 @@ import appReducer from "/lib/reducers/appReducer";
 
 
 let store = createStore(
-    appReducer,
-    compose(
-        applyMiddleware(thunk),
-        applyMiddleware(routerMiddleware(browserHistory)),
-        window.devToolsExtension ? window.devToolsExtension() : f => f
-    )
+	appReducer,
+	compose(
+		applyMiddleware(thunk),
+		applyMiddleware(routerMiddleware(browserHistory)),
+		window.devToolsExtension ? window.devToolsExtension() : f => f
+	)
 );
 
 const history = syncHistoryWithStore(browserHistory, store);
@@ -28,16 +28,16 @@ const history = syncHistoryWithStore(browserHistory, store);
 const muiTheme = getMuiTheme({});
 
 
-let Root = ({}) => {    
-    return(
-        <Provider store={store}>
-            <MuiThemeProvider muiTheme={muiTheme}>
-                <Router history={history}>
-                    {Routes}
-                </Router>
-            </MuiThemeProvider>
-        </Provider>
-    );
+let Root = ({}) => {
+	return (
+		<Provider store={store}>
+			<MuiThemeProvider muiTheme={muiTheme}>
+				<Router history={history}>
+					{Routes}
+				</Router>
+			</MuiThemeProvider>
+		</Provider>
+	);
 };
 
 export default Root;

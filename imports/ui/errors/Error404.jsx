@@ -4,24 +4,24 @@ import {connect} from "react-redux";
 
 const mapStateToProps = (state, ownProps) => {
 
-    return {};
+	return {};
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        handlers: {}
-    };
+	return {
+		handlers: {}
+	};
 };
 
 let Error404 = ({handlers}) => {
-    return (
-        <div>
-            <h2>Requested Page has not been found</h2>
-        </div>
-    );
+	return (
+		<div>
+			<h2>Requested Page has not been found</h2>
+		</div>
+	);
 };
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+	mapStateToProps,
+	mapDispatchToProps
 )(Error404);

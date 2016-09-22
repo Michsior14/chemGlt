@@ -10,133 +10,133 @@ import {validateSignUp} from "/lib/validations";
 
 
 let SignUpForm = ({
-    handleClose,
-    submitting,
-    open,
-    handleSubmit,
-    valid }) => {
-    const actions = [
-        (<FlatButton
-            label="Cancel"
-            primary
-            onTouchTap={handleClose}
-            />),
-        (<FlatButton
-            type="submit"
-            label="Submit"
-            primary
-            keyboardFocused
-            form="signUpForm"
-            disabled={!valid || submitting}
-            />)
-    ];
-    return (
-        <div>
-            <Dialog
-                title="Signing in"
-                actions={actions}
-                modal={false}
-                open={open}
-                onRequestClose={handleClose}
-                >
-                <form
-                    id="signUpForm"
-                    onSubmit={handleSubmit}
-                    >
-                    <div className="row between-xs">
-                        <div className="col-md auto-width">
-                            <Field
-                                name="username"
-                                component={TextField}
-                                className="box auto-width"
-                                hintText="Username"
-                                floatingLabelText="Username"
-                                />
-                        </div>
-                    </div>
-                    <div className="row between-xs">
-                        <div className="col-md auto-width">
-                            <Field
-                                name="email"
-                                component={TextField}
-                                className="box auto-width"
-                                hintText="E-mail"
-                                floatingLabelText="E-mail"
-                                />
-                        </div>
-                        <div className="col-md auto-width">
-                            <Field
-                                name="password"
-                                component={TextField}
-                                className="box auto-width"
-                                hintText="Password"
-                                floatingLabelText="Password"
-                                type="password"
-                                />
-                        </div>
-                    </div>
-                    <div className="row between-xs">
-                        <div className="col-md auto-width">
-                            <Field
-                                name="firstname"
-                                component={TextField}
-                                className="box auto-width"
-                                hintText="Firstname"
-                                floatingLabelText="Firstname"
-                                />
-                        </div>
-                        <div className="col-md auto-width">
-                            <Field
-                                name="lastname"
-                                component={TextField}
-                                className="box auto-width"
-                                hintText="Lastname"
-                                floatingLabelText="Lastname"
-                                />
-                        </div>
-                    </div>
-                </form>
-            </Dialog>
-        </div>
-    );
+	handleClose,
+	submitting,
+	open,
+	handleSubmit,
+	valid }) => {
+	const actions = [
+		(<FlatButton
+			label="Cancel"
+			primary
+			onTouchTap={handleClose}
+			/>),
+		(<FlatButton
+			type="submit"
+			label="Submit"
+			primary
+			keyboardFocused
+			form="signUpForm"
+			disabled={!valid || submitting}
+			/>)
+	];
+	return (
+		<div>
+			<Dialog
+				title="Signing in"
+				actions={actions}
+				modal={false}
+				open={open}
+				onRequestClose={handleClose}
+				>
+				<form
+					id="signUpForm"
+					onSubmit={handleSubmit}
+					>
+					<div className="row between-xs">
+						<div className="col-md auto-width">
+							<Field
+								name="username"
+								component={TextField}
+								className="box auto-width"
+								hintText="Username"
+								floatingLabelText="Username"
+								/>
+						</div>
+					</div>
+					<div className="row between-xs">
+						<div className="col-md auto-width">
+							<Field
+								name="email"
+								component={TextField}
+								className="box auto-width"
+								hintText="E-mail"
+								floatingLabelText="E-mail"
+								/>
+						</div>
+						<div className="col-md auto-width">
+							<Field
+								name="password"
+								component={TextField}
+								className="box auto-width"
+								hintText="Password"
+								floatingLabelText="Password"
+								type="password"
+								/>
+						</div>
+					</div>
+					<div className="row between-xs">
+						<div className="col-md auto-width">
+							<Field
+								name="firstname"
+								component={TextField}
+								className="box auto-width"
+								hintText="Firstname"
+								floatingLabelText="Firstname"
+								/>
+						</div>
+						<div className="col-md auto-width">
+							<Field
+								name="lastname"
+								component={TextField}
+								className="box auto-width"
+								hintText="Lastname"
+								floatingLabelText="Lastname"
+								/>
+						</div>
+					</div>
+				</form>
+			</Dialog>
+		</div>
+	);
 
 };
 
 const mapStateToProps = (state, ownProps) => {
-    const reducer = state.navigationReducer;
-    return {
-        open: (reducer.isDialog && reducer.openedDialog === "SIGN_UP")
-    };
+	const reducer = state.navigationReducer;
+	return {
+		open: (reducer.isDialog && reducer.openedDialog === "SIGN_UP")
+	};
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        handleClose: () => {
-            dispatch(closeDialog());
-        }
-    };
+	return {
+		handleClose: () => {
+			dispatch(closeDialog());
+		}
+	};
 };
 
 SignUpForm = reduxForm({
-    form: "SignUpForm",
-    onSubmit: (data, dispatch) => {
-        const newUser = {
-            username: data.username,
-            email: data.email,
-            password: data.password,
-            profile: {
-                name: {
-                    first: data.firstname,
-                    last: data.lastname
-                }
-            }
-        };
-        dispatch(signUp(data));
-    },
-    validate: validateSignUp
+	form: "SignUpForm",
+	onSubmit: (data, dispatch) => {
+		const newUser = {
+			username: data.username,
+			email: data.email,
+			password: data.password,
+			profile: {
+				name: {
+					first: data.firstname,
+					last: data.lastname
+				}
+			}
+		};
+		dispatch(signUp(data));
+	},
+	validate: validateSignUp
 })(SignUpForm);
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+	mapStateToProps,
+	mapDispatchToProps
 )(SignUpForm);

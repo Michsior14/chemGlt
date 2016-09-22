@@ -7,47 +7,47 @@ import {setEditorState, keyCommandHandler, keyBindingHandler} from "/lib/actions
 
 
 let TextEditor = ({states, handlers}) => {
-    return (
-        <div className="text-editor-wrapper">
-            <EditorButtons>
-                <FlatButton
-                    label="Save"
-                    />
-            </EditorButtons>
-            <Editor
-                editorState={states.editor}
-                onChange={handlers.editorChange}
-                handleKeyCommand={handlers.keyCommand}
-                keyBindingFn={handlers.keyBinding}
-                spellChecks
-                />
-        </div>
-    );
+	return (
+		<div className="text-editor-wrapper">
+			<EditorButtons>
+				<FlatButton
+					label="Save"
+					/>
+			</EditorButtons>
+			<Editor
+				editorState={states.editor}
+				onChange={handlers.editorChange}
+				handleKeyCommand={handlers.keyCommand}
+				keyBindingFn={handlers.keyBinding}
+				spellChecks
+				/>
+		</div>
+	);
 };
 
 const mapStateToProps = (state, ownProps) => {
-    return {
-        states: {
-            editor: state.textEditorReducer.editorState,
-        }
-    };
+	return {
+		states: {
+			editor: state.textEditorReducer.editorState,
+		}
+	};
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        handlers: {
-            editorChange: (editor) => {
-                dispatch(setEditorState(editor));
-            },
-            keyBinding: keyBindingHandler,
-            keyCommand(command) {
-                return dispatch(keyCommandHandler(command));
-            }
-        }
-    };
+	return {
+		handlers: {
+			editorChange: (editor) => {
+				dispatch(setEditorState(editor));
+			},
+			keyBinding: keyBindingHandler,
+			keyCommand(command) {
+				return dispatch(keyCommandHandler(command));
+			}
+		}
+	};
 };
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+	mapStateToProps,
+	mapDispatchToProps
 )(TextEditor);

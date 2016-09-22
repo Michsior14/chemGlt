@@ -91,7 +91,7 @@ let NavigationRightMenu = ({ states, handlers }) => {
 	);
 };
 
-UnloggedRightMenu = connect(
+let UnloggedRightMenu = connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(NavigationRightMenu);

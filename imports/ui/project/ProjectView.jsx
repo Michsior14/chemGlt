@@ -6,36 +6,36 @@ import RaisedButton from "material-ui/RaisedButton";
 
 
 let ProjectView = ({handlers, states, params}) => {
-    return (
-        <div>
-            <h2>Project {params.projectId}</h2>
-            <RaisedButton label="Graphs" onTouchTap={ () => {
-                handlers.openView("/project/" + params.projectId + "/graph/list");
-            } } />
-        </div>
-    );
+	return (
+		<div>
+			<h2>Project {params.projectId}</h2>
+			<RaisedButton label="Graphs" onTouchTap={ () => {
+				handlers.openView("/project/" + params.projectId + "/graph/list");
+			} } />
+		</div>
+	);
 };
 
 const mapStateToProps = (state, ownProps) => {
 
-    return {
-        states: {
+	return {
+		states: {
 
-        }
-    };
+		}
+	};
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        handlers: {
-            openView: (address) => {
-                dispatch(pushPath(address));
-            }
-        }
-    };
+	return {
+		handlers: {
+			openView: (address) => {
+				dispatch(pushPath(address));
+			}
+		}
+	};
 };
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+	mapStateToProps,
+	mapDispatchToProps
 )(ProjectView);

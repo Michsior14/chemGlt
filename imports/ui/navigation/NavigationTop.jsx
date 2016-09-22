@@ -10,33 +10,33 @@ const rightMenu = (
 );
 
 let NavigationTop = ({handlers}) => (
-    <div>
-        <AppBar
-            title="ChemGit"
-            onTouchTap={handlers.handleBarTouch}
-            onLeftIconButtonTouchTap={handlers.handleNavigationMenuTouch}
-            iconElementRight={rightMenu}
-            >
-            <NavigationMenu />
-        </AppBar>
-    </div>
+	<div>
+		<AppBar
+			title="ChemGit"
+			onTouchTap={handlers.handleBarTouch}
+			onLeftIconButtonTouchTap={handlers.handleNavigationMenuTouch}
+			iconElementRight={rightMenu}
+			>
+			<NavigationMenu />
+		</AppBar>
+	</div>
 );
 
 const mapStateToProps = (state, ownProps) => {
-    return {};
+	return {};
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        handlers: {
-            handleNavigationMenuTouch: () => {
-                dispatch(handleLeftNav());
-            },
-            handleBarTouch: () => {
+	return {
+		handlers: {
+			handleNavigationMenuTouch: () => {
+				dispatch(handleLeftNav());
+			},
+			handleBarTouch: () => {
 
-            }
-        }
-    };
+			}
+		}
+	};
 };
 
 export default connect(
