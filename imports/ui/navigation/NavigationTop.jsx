@@ -6,7 +6,7 @@ import NavigationRightMenu from "/imports/ui/navigation/NavigationRightMenu";
 import {handleLeftNav} from "/lib/actions/navigation";
 
 const rightMenu = (
-    <UnloggedRightMenu />
+    <NavigationRightMenu />
 );
 
 let NavigationTop = ({handlers}) => (

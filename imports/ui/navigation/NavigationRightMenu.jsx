@@ -91,9 +91,7 @@ let NavigationRightMenu = ({ states, handlers }) => {
 	);
 };
 
-let UnloggedRightMenu = connect(
+export default connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(NavigationRightMenu);
-
-export default NavigationRightMenu;
