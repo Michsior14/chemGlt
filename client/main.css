@@ -1,1 +1,19 @@
-/* CSS declarations go here */
+.navigation-open {
+    margin-left: 256px;
+}
+
+.navigation-close {
+    margin-left: 0;
+}
+
+.text-editor-wrapper {
+    margin: 10px;
+}
+
+.auto-width {
+    width: 100%!important;
+}
+
+.text-center {
+    text-align: center;
+}
